@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="sister.ayolelang">
+
+    <application
+            android:fullBackupContent="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity android:name=".mainPengguna.alistRelawan.view.View_ListRelawan">
+        </activity>
+        <activity
+                android:name=".mainPengguna.view.View_MainPengguna"
+                android:label="E-Help">
+        </activity>
+        <activity
+                android:name=".mainRelawan.view.View_MainRelawan"
+                android:label="Permintaan Pertolongan">
+        </activity>
+        <activity
+                android:name=".daftar.view.View_DaftarPengguna"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+                android:name=".daftar.view.View_DaftarRelawan"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".login.view.View_Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+                android:name=".MainActivity"
+                android:label="@string/app_name"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+    </application>
+
+</manifest>
