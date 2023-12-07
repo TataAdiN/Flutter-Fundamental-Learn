@@ -8,15 +8,40 @@ class ReturnDataScreen extends StatefulWidget {
 }
 
 class _ReturnDataScreenState extends State<ReturnDataScreen> {
+  final _textController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Return with Data Screen'),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: TextField(
+                controller: _textController,
+                decoration: const InputDecoration(labelText: 'Enter your name'),
+              ),
+            ),
+            ElevatedButton(
+              child: const Text('Send'),
+              onPressed: () {
+                Navigator.pop(context, _textController.text);
+              },
+            ),
+          ],
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
   }
 }
