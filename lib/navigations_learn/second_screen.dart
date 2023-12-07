@@ -6,10 +6,15 @@ class SecondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Second Screen'),
+      ),
       body: Center(
         child: ElevatedButton(
           child: const Text('Back'),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
     );
