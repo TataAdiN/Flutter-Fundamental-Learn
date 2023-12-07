@@ -6,10 +6,15 @@ class ReplacementScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Replacement Screen'),
+      ),
       body: Center(
         child: ElevatedButton(
           child: const Text('Open Another Screen'),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, '/anotherScreen');
+          },
         ),
       ),
     );
