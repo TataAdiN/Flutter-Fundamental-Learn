@@ -9,7 +9,29 @@ class NavigationLearn extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Navigation & Routing'),
       ),
-      body: Container(),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+              child: const Text('Go to Second Screen'),
+              onPressed: () {},
+            ),
+            ElevatedButton(
+              child: const Text('Navigation with Data'),
+              onPressed: () {},
+            ),
+            ElevatedButton(
+              child: const Text('Return Data from Another Screen'),
+              onPressed: () {},
+            ),
+            ElevatedButton(
+              child: const Text('Replace Screen'),
+              onPressed: () {},
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
