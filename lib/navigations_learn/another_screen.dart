@@ -6,6 +6,9 @@ class AnotherScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Another Screen'),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -13,7 +16,9 @@ class AnotherScreen extends StatelessWidget {
             const Text('Back to First Screen'),
             ElevatedButton(
               child: const Text('Back'),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
           ],
         ),
