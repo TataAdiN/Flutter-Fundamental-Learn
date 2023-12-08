@@ -13,7 +13,7 @@ class ReplacementScreen extends StatelessWidget {
         child: ElevatedButton(
           child: const Text('Open Another Screen'),
           onPressed: () {
-            Navigator.pushReplacementNamed(context, '/anotherScreen');
+            Navigator.pushReplacementNamed(context, '/fundamental_app.another_screen');
           },
         ),
       ),
