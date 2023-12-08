@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monumen_submission/news_app/news_app.dart';
 
 import 'navigations_learn/another_screen.dart';
 import 'navigations_learn/navigation_learn.dart';
@@ -23,9 +24,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/',
+      initialRoute: '/newsApp',
       routes: {
         '/': (context) => const NavigationLearn(),
+        '/newsApp': (context) => const NewsApp(),
         '/secondScreen': (context) => const SecondScreen(),
         '/secondScreenWithData': (context) => SecondScreenWithData(
             ModalRoute.of(context)?.settings.arguments as String),
