@@ -18,8 +18,10 @@ class NewsApp extends StatelessWidget {
             DefaultAssetBundle.of(context).loadString('assets/articles.json'),
         builder: (context, snapshot) {
           final List<Article> articles = _parseArticles(snapshot.data);
-          return ListView.builder(
+          return ListView.separated(
             itemCount: articles.length,
+            separatorBuilder: (BuildContext context, int index) =>
+                const Divider(height: 1),
             itemBuilder: (context, index) {
               return _buildArticleItem(context, articles[index]);
             },
