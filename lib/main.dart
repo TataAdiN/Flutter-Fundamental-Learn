@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monumen_submission/main_screen.dart';
+import 'package:monumen_submission/news_app/article_webview_page.dart';
 import 'package:monumen_submission/news_app/news_app.dart';
 
 import 'navigations_learn/another_screen.dart';
@@ -8,7 +9,7 @@ import 'navigations_learn/replacement_screen.dart';
 import 'navigations_learn/return_data_screen.dart';
 import 'navigations_learn/second_screen.dart';
 import 'navigations_learn/second_screen_with_data.dart';
-import 'news_app/detail_article_page.dart';
+import 'news_app/article_detail_page.dart';
 import 'news_app/models/article.dart';
 
 void main() {
@@ -33,6 +34,8 @@ class MyApp extends StatelessWidget {
         '/news_app': (context) => const NewsApp(),
         '/news_app.detail': (context) => ArticleDetailPage(
             article: ModalRoute.of(context)?.settings.arguments as Article),
+        '/news_app.webview': (context) => ArticleWebView(
+            url: ModalRoute.of(context)?.settings.arguments as String),
         '/fundamental_app': (context) => const NavigationLearn(),
         '/fundamental_app.second_screen': (context) => const SecondScreen(),
         '/fundamental_app.second_screen_data': (context) =>
