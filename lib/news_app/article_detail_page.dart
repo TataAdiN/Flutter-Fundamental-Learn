@@ -44,7 +44,9 @@ class ArticleDetailPage extends StatelessWidget {
                   const SizedBox(height: 10),
                   ElevatedButton(
                     child: const Text('Read more'),
-                    onPressed: () {},
+                    onPressed: () => Navigator.pushNamed(
+                        context, '/news_app.webview',
+                        arguments: article.url),
                   ),
                 ],
               ),
