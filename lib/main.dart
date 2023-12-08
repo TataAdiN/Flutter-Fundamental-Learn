@@ -8,6 +8,8 @@ import 'navigations_learn/replacement_screen.dart';
 import 'navigations_learn/return_data_screen.dart';
 import 'navigations_learn/second_screen.dart';
 import 'navigations_learn/second_screen_with_data.dart';
+import 'news_app/detail_article_page.dart';
+import 'news_app/models/article.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,12 +31,17 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const MainScreen(),
         '/news_app': (context) => const NewsApp(),
+        '/news_app.detail': (context) => ArticleDetailPage(
+            article: ModalRoute.of(context)?.settings.arguments as Article),
         '/fundamental_app': (context) => const NavigationLearn(),
         '/fundamental_app.second_screen': (context) => const SecondScreen(),
-        '/fundamental_app.second_screen_data': (context) => SecondScreenWithData(
-            ModalRoute.of(context)?.settings.arguments as String),
-        '/fundamental_app.return_data_screen': (context) => const ReturnDataScreen(),
-        '/fundamental_app.replacement_screen': (context) => const ReplacementScreen(),
+        '/fundamental_app.second_screen_data': (context) =>
+            SecondScreenWithData(
+                ModalRoute.of(context)?.settings.arguments as String),
+        '/fundamental_app.return_data_screen': (context) =>
+            const ReturnDataScreen(),
+        '/fundamental_app.replacement_screen': (context) =>
+            const ReplacementScreen(),
         '/fundamental_app.another_screen': (context) => const AnotherScreen(),
       },
     );
