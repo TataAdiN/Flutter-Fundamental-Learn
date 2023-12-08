@@ -16,13 +16,13 @@ class NavigationLearn extends StatelessWidget {
             ElevatedButton(
               child: const Text('Go to Second Screen'),
               onPressed: () {
-                Navigator.pushNamed(context, '/secondScreen');
+                Navigator.pushNamed(context, '/fundamental_app.second_screen');
               },
             ),
             ElevatedButton(
               child: const Text('Navigation with Data'),
               onPressed: () {
-                Navigator.pushNamed(context, '/secondScreenWithData',
+                Navigator.pushNamed(context, '/fundamental_app.second_screen_data',
                     arguments: 'Hello from First Screen!');
               },
             ),
@@ -31,7 +31,7 @@ class NavigationLearn extends StatelessWidget {
               onPressed: () async {
                 final scaffoldMessenger = ScaffoldMessenger.of(context);
                 final result =
-                    await Navigator.pushNamed(context, '/returnDataScreen');
+                    await Navigator.pushNamed(context, '/fundamental_app.return_data_screen');
                 SnackBar snackBar = SnackBar(content: Text('$result'));
                 scaffoldMessenger.showSnackBar(snackBar);
               },
@@ -39,7 +39,7 @@ class NavigationLearn extends StatelessWidget {
             ElevatedButton(
               child: const Text('Replace Screen'),
               onPressed: () {
-                Navigator.pushNamed(context, '/replacementScreen');
+                Navigator.pushNamed(context, '/fundamental_app.replacement_screen');
               },
             ),
           ],
