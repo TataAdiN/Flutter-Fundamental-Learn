@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monumen_submission/main_screen.dart';
 import 'package:monumen_submission/news_app/news_app.dart';
 
 import 'navigations_learn/another_screen.dart';
@@ -24,16 +25,17 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/newsApp',
+      initialRoute: '/',
       routes: {
-        '/': (context) => const NavigationLearn(),
-        '/newsApp': (context) => const NewsApp(),
-        '/secondScreen': (context) => const SecondScreen(),
-        '/secondScreenWithData': (context) => SecondScreenWithData(
+        '/': (context) => const MainScreen(),
+        '/news_app': (context) => const NewsApp(),
+        '/fundamental_app': (context) => const NavigationLearn(),
+        '/fundamental_app.second_screen': (context) => const SecondScreen(),
+        '/fundamental_app.second_screen_data': (context) => SecondScreenWithData(
             ModalRoute.of(context)?.settings.arguments as String),
-        '/returnDataScreen': (context) => const ReturnDataScreen(),
-        '/replacementScreen': (context) => const ReplacementScreen(),
-        '/anotherScreen': (context) => const AnotherScreen(),
+        '/fundamental_app.return_data_screen': (context) => const ReturnDataScreen(),
+        '/fundamental_app.replacement_screen': (context) => const ReplacementScreen(),
+        '/fundamental_app.another_screen': (context) => const AnotherScreen(),
       },
     );
   }
