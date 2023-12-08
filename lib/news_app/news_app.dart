@@ -41,6 +41,8 @@ class NewsApp extends StatelessWidget {
 
   Widget _buildArticleItem(BuildContext context, Article article) {
     return ListTile(
+      onTap: () =>
+          Navigator.pushNamed(context, '/news_app.detail', arguments: article),
       contentPadding:
           const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       leading: Image.network(
