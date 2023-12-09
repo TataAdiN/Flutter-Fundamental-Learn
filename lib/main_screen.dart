@@ -34,6 +34,17 @@ class MainScreen extends StatelessWidget {
                     Text('Flutter News App Example, Fundamental Learning'),
               ),
             ),
+          ),
+          InkWell(
+            onTap: () => Navigator.pushNamed(context, '/flutter_ui'),
+            child: const Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: ListTile(
+                tileColor: Colors.white,
+                title: Text('Flutter UI'),
+                subtitle: Text('Flutter UI Design Fundamental Learning'),
+              ),
+            ),
           )
         ],
       ),
