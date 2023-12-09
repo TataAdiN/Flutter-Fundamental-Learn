@@ -3,6 +3,7 @@ import 'package:monumen_submission/main_screen.dart';
 import 'package:monumen_submission/news_app/article_webview_page.dart';
 import 'package:monumen_submission/news_app/news_app.dart';
 
+import 'flutter_ui/flutter_ui.dart';
 import 'navigations_learn/another_screen.dart';
 import 'navigations_learn/navigation_learn.dart';
 import 'navigations_learn/replacement_screen.dart';
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         '/fundamental_app.replacement_screen': (context) =>
             const ReplacementScreen(),
         '/fundamental_app.another_screen': (context) => const AnotherScreen(),
+        '/flutter_ui': (context) => const FlutterUI(),
       },
     );
   }
