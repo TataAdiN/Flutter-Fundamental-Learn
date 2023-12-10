@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:monumen_submission/main_screen.dart';
-import 'package:monumen_submission/news_app/article_webview_page.dart';
-import 'package:monumen_submission/news_app/news_app.dart';
 
+import 'flutter_ui/flutter_calculator.dart';
+import 'flutter_ui/flutter_gestures.dart';
+import 'flutter_ui/flutter_layouts.dart';
 import 'flutter_ui/flutter_ui.dart';
+import 'main_screen.dart';
 import 'navigations_learn/another_screen.dart';
 import 'navigations_learn/navigation_learn.dart';
 import 'navigations_learn/replacement_screen.dart';
@@ -11,7 +12,9 @@ import 'navigations_learn/return_data_screen.dart';
 import 'navigations_learn/second_screen.dart';
 import 'navigations_learn/second_screen_with_data.dart';
 import 'news_app/article_detail_page.dart';
+import 'news_app/article_webview_page.dart';
 import 'news_app/models/article.dart';
+import 'news_app/news_app.dart';
 
 void main() {
   runApp(const MyApp());
@@ -48,6 +51,9 @@ class MyApp extends StatelessWidget {
             const ReplacementScreen(),
         '/fundamental_app.another_screen': (context) => const AnotherScreen(),
         '/flutter_ui': (context) => const FlutterUI(),
+        '/flutter_ui.layouts': (context) => const FlutterLayouts(),
+        '/flutter_ui.gestures': (context) => const FlutterGestures(),
+        '/flutter_ui.calculator': (context) => const FlutterCalculator(),
       },
     );
   }
