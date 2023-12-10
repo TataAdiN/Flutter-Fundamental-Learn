@@ -13,7 +13,7 @@ class FlutterUI extends StatelessWidget {
       body: ListView(
         children: [
           InkWell(
-            onTap: () {},
+            onTap: () => Navigator.pushNamed(context, '/flutter_ui.layouts'),
             child: const Padding(
               padding: EdgeInsets.only(top: 10),
               child: ListTile(
@@ -24,13 +24,24 @@ class FlutterUI extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () => Navigator.pushNamed(context, '/flutter_ui.gestures'),
             child: const Padding(
               padding: EdgeInsets.only(top: 10),
               child: ListTile(
                 tileColor: Colors.white,
-                title: Text('Gesture'),
+                title: Text('Gestures'),
                 subtitle: Text('Flutter Gestures Fundamental'),
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () => Navigator.pushNamed(context, '/flutter_ui.calculator'),
+            child: const Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: ListTile(
+                tileColor: Colors.white,
+                title: Text('Calculator App'),
+                subtitle: Text('Flutter Calculator App for Layouting Example'),
               ),
             ),
           ),
