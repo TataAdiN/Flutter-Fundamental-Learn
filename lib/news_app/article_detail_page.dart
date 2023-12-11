@@ -16,7 +16,10 @@ class ArticleDetailPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.network(article.urlToImage),
+            Hero(
+              tag: article.urlToImage,
+              child: Image.network(article.urlToImage),
+            ),
             Padding(
               padding: const EdgeInsets.all(10),
               child: Column(
@@ -43,6 +46,15 @@ class ArticleDetailPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(0),
+                        ),
+                      ),
+                    ),
                     child: const Text('Read more'),
                     onPressed: () => Navigator.pushNamed(
                         context, '/news_app.webview',
