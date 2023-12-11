@@ -28,7 +28,7 @@ class CalculatorButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: ()=> onTap(),
-      child: Container(
+      child: Ink(
         color: backgroundColor,
         child: Center(
           child: icon == null
