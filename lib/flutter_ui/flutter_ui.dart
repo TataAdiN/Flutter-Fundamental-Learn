@@ -46,13 +46,24 @@ class FlutterUI extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () => Navigator.pushNamed(context, '/flutter_ui.slivers'),
             child: const Padding(
               padding: EdgeInsets.only(top: 10),
               child: ListTile(
                 tileColor: Colors.white,
                 title: Text('Slivers'),
                 subtitle: Text('Flutter Slivers Fundamental'),
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () => Navigator.pushNamed(context, '/flutter_ui.slivers_list_grid'),
+            child: const Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: ListTile(
+                tileColor: Colors.white,
+                title: Text('Slivers List & Grid'),
+                subtitle: Text('Flutter Slivers List And Grid Fundamental'),
               ),
             ),
           ),
