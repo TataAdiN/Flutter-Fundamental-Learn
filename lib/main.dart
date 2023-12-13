@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'main_screen.dart';
+import 'models/restaurant.dart';
+import 'restaurant_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,14 +18,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: Theme.of(context).colorScheme.copyWith(
-          primary: Colors.white,
-          onPrimary: Colors.black,
-          secondary: Colors.orange,
-        ),
+              primary: Colors.white,
+              onPrimary: Colors.black,
+              secondary: Colors.orange,
+            ),
       ),
       initialRoute: '/',
       routes: {
         '/': (context) => const MainScreen(),
+        '/restaurant': (context) => RestaurantScreen(
+            restaurant:
+                ModalRoute.of(context)?.settings.arguments as Restaurant),
       },
     );
   }
