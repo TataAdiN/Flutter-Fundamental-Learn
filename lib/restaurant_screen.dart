@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fundamental/utils/responsive.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:readmore/readmore.dart';
 
@@ -75,6 +76,21 @@ class RestaurantScreen extends StatelessWidget {
                           style: const TextStyle(fontSize: 18),
                         ),
                       ],
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Center(
+                      child: RatingBarIndicator(
+                        rating: restaurant.rating.roundToDouble(),
+                        itemCount: 5,
+                        itemPadding: const EdgeInsets.symmetric(horizontal: 1.0),
+                        itemBuilder: (context, _) => const Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        ),
+                        itemSize: 20,
+                      ),
                     ),
                     const SizedBox(height: 20),
                     Padding(
