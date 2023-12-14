@@ -98,26 +98,37 @@ class _MainScreenState extends State<MainScreen> {
       );
 
   Widget _itemCard(Restaurant restaurant, double screenWidth) => InkWell(
-        onTap: () =>
-            Navigator.pushNamed(context, '/restaurant', arguments: restaurant),
+        onTap: () => Navigator.pushNamed(
+          context,
+          '/restaurant',
+          arguments: restaurant,
+        ),
         child: Card(
           color: Colors.white,
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Row(
               children: [
-                Container(
-                  height: Responsive.adjust(
-                      screenSize: screenWidth, percentage: 15),
-                  width: Responsive.adjust(
-                      screenSize: screenWidth, percentage: 20),
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 2, color: Colors.grey),
-                    shape: BoxShape.rectangle,
-                    borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    image: DecorationImage(
+                Hero(
+                  tag: restaurant.imgUrl,
+                  child: Container(
+                    height: Responsive.adjust(
+                      screenSize: screenWidth,
+                      percentage: 15,
+                    ),
+                    width: Responsive.adjust(
+                      screenSize: screenWidth,
+                      percentage: 20,
+                    ),
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 2, color: Colors.grey),
+                      shape: BoxShape.rectangle,
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                      image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: NetworkImage(restaurant.imgUrl)),
+                        image: NetworkImage(restaurant.imgUrl),
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(
