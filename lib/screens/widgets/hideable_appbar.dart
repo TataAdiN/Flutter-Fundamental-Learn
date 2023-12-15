@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/responsive.dart';
-
 class HideableAppBar extends StatelessWidget {
   const HideableAppBar({
     super.key,
