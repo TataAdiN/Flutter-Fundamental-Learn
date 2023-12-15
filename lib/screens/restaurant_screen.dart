@@ -166,11 +166,11 @@ class RestaurantScreen extends StatelessWidget {
                 ),
                 minHeight: Responsive.adjust(
                   screenSize: screenHeight,
-                  percentage: 4,
+                  percentage: 6,
                 ),
                 maxHeight: Responsive.adjust(
                   screenSize: screenHeight,
-                  percentage: 4,
+                  percentage: 6,
                 ),
               ),
               SliverPadding(
@@ -212,11 +212,11 @@ class RestaurantScreen extends StatelessWidget {
                 ),
                 minHeight: Responsive.adjust(
                   screenSize: screenHeight,
-                  percentage: 4,
+                  percentage: 6,
                 ),
                 maxHeight: Responsive.adjust(
                   screenSize: screenHeight,
-                  percentage: 4,
+                  percentage: 6,
                 ),
               ),
               SliverPadding(
