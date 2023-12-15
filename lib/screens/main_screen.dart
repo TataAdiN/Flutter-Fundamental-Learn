@@ -209,51 +209,6 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                   ],
                 ),
-                /*
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        backgroundColor:
-                            Theme.of(context).colorScheme.secondary,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                        ),
-                      ),
-                      onPressed: () {},
-                      child: const Row(
-                        children: [
-                          Icon(LineIcons.sortNumericUp, size: 24),
-                          Text('Rating'),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        backgroundColor:
-                            Theme.of(context).colorScheme.secondary,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                        ),
-                      ),
-                      onPressed: () {},
-                      child: const Row(
-                        children: [
-                          Icon(LineIcons.sortAlphabeticalUp, size: 24),
-                          Text('Name'),
-                        ],
-                      ),
-                    ),
-                  ],
-                )*/
               ],
             ),
           ),
