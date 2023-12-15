@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:line_icons/line_icons.dart';
 
 import '../models/restaurant.dart';
 import '../utils/responsive.dart';
-import '../widgets/sliver_appbar_delegate.dart';
+import '../widgets/sliver_pinned_header.dart';
+import 'widgets/hideable_appbar.dart';
+import 'widgets/restaurant_card.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -43,7 +43,7 @@ class _MainScreenState extends State<MainScreen> {
         child: SafeArea(
           child: CustomScrollView(
             slivers: [
-              _hideableAppbar(context, screenHeight),
+              _appBar(context, screenHeight),
               _pinnedHeading(screenHeight, screenWidth),
               _content(restaurants, screenWidth),
               if (restaurants.isEmpty) _emptyContent()
@@ -98,153 +98,79 @@ class _MainScreenState extends State<MainScreen> {
         ),
       );
 
-  Widget _itemCard(Restaurant restaurant, double screenWidth) => InkWell(
+  Widget _itemCard(Restaurant restaurant, double screenWidth) => RestaurantCard(
         onTap: () => Navigator.pushNamed(
           context,
           '/restaurant',
           arguments: restaurant,
         ),
-        child: Card(
-          color: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              children: [
-                Hero(
-                  tag: restaurant.imgUrl,
-                  child: Container(
-                    height: Responsive.adjust(
-                      screenSize: screenWidth,
-                      percentage: 15,
-                    ),
-                    width: Responsive.adjust(
-                      screenSize: screenWidth,
-                      percentage: 20,
-                    ),
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 2, color: Colors.grey),
-                      shape: BoxShape.rectangle,
-                      borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(restaurant.imgUrl),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 16,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      restaurant.name,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
-                    Row(
-                      children: [
-                        const Icon(LineIcons.mapMarked, size: 20),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          restaurant.city,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    RatingBarIndicator(
-                      rating: restaurant.rating.roundToDouble(),
-                      itemCount: 5,
-                      itemPadding: const EdgeInsets.symmetric(horizontal: 1.0),
-                      itemBuilder: (context, _) => const Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                      ),
-                      itemSize: 20,
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ),
+        restaurant: restaurant,
+        imgWidth: Responsive.adjust(
+          screenSize: screenWidth,
+          percentage: 20,
+        ),
+        imgHeight: Responsive.adjust(
+          screenSize: screenWidth,
+          percentage: 15,
         ),
       );
 
   Widget _pinnedHeading(double screenHeight, double screenWidth) =>
-      SliverPersistentHeader(
-        pinned: true,
-        delegate: SliverAppBarDelegate(
-          minHeight: Responsive.adjust(
-            screenSize: screenHeight,
-            percentage: 9,
-          ),
-          maxHeight: Responsive.adjust(
-            screenSize: screenHeight,
-            percentage: 9,
-          ),
-          child: Container(
-            color: Colors.white,
-            padding: const EdgeInsets.only(top: 20),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-                      width: Responsive.adjust(
-                        screenSize: screenWidth,
-                        percentage: 100,
-                      ),
-                      child: Align(
-                        child: CupertinoSearchTextField(
-                          placeholder: 'Type restaurant name here...',
-                          onChanged: (String queryParam) => _filter(queryParam),
-                        ),
+      SliverPinnedHeader(
+        minHeight: Responsive.adjust(
+          screenSize: screenHeight,
+          percentage: 9,
+        ),
+        maxHeight: Responsive.adjust(
+          screenSize: screenHeight,
+          percentage: 9,
+        ),
+        widget: Padding(
+          padding: const EdgeInsets.only(top: 20),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    width: Responsive.adjust(
+                      screenSize: screenWidth,
+                      percentage: 100,
+                    ),
+                    child: Align(
+                      child: CupertinoSearchTextField(
+                        placeholder: 'Type restaurant name here...',
+                        onChanged: (String queryParam) => _filter(queryParam),
                       ),
                     ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
-
-  Widget _hideableAppbar(BuildContext context, double screenHeight) =>
-      SliverAppBar(
-        pinned: false,
-        snap: false,
-        floating: false,
-        expandedHeight: Responsive.adjust(
-          screenSize: screenHeight,
-          percentage: 15,
-        ),
-        elevation: 0,
-        flexibleSpace: const FlexibleSpaceBar(
-          centerTitle: true,
-          titlePadding: EdgeInsets.all(10),
-          title: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                'Indonesian Restaurants',
-                textScaler: TextScaler.linear(0.8),
-              ),
-              Text(
-                'SUPPORT UMKM',
-                textScaler: TextScaler.linear(0.3),
-                style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
             ],
           ),
         ),
-        backgroundColor: Colors.white,
+      );
+
+  Widget _appBar(BuildContext context, double screenHeight) => HideableAppBar(
+        maxHeight: Responsive.adjust(
+          screenSize: screenHeight,
+          percentage: 15,
+        ),
+        widget: const Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              'Indonesian Restaurants',
+              textScaler: TextScaler.linear(0.8),
+            ),
+            Text(
+              'SUPPORT UMKM',
+              textScaler: TextScaler.linear(0.3),
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       );
 
   Widget _emptyContent() => const SliverToBoxAdapter(
