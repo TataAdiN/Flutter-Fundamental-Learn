@@ -1,53 +1,39 @@
-import 'package:flutter/material.dart';
+
+import 'package:flutter/cupertino.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-        title: const Text('Flutter Fundamental Learn'),
-      ),
-      body: ListView(
-        children: [
-          InkWell(
-            onTap: () => Navigator.pushNamed(context, '/fundamental_app'),
-            child: const Padding(
-              padding: EdgeInsets.only(top: 10),
-              child: ListTile(
-                tileColor: Colors.white,
-                title: Text('Flutter Navigation'),
-                subtitle: Text('Flutter Navigation Fundamental Learning'),
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () => Navigator.pushNamed(context, '/news_app'),
-            child: const Padding(
-              padding: EdgeInsets.only(top: 10),
-              child: ListTile(
-                tileColor: Colors.white,
-                title: Text('News App'),
-                subtitle:
-                    Text('Flutter News App Example, Fundamental Learning'),
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () => Navigator.pushNamed(context, '/flutter_ui'),
-            child: const Padding(
-              padding: EdgeInsets.only(top: 10),
-              child: ListTile(
-                tileColor: Colors.white,
-                title: Text('Flutter UI'),
-                subtitle: Text('Flutter UI Design Fundamental Learning'),
-              ),
-            ),
-          )
-        ],
-      ),
+    return CupertinoTabScaffold(
+      tabBar: CupertinoTabBar(  items: [
+        BottomNavigationBarItem(
+          icon: Icon(CupertinoIcons.news),
+          label: 'Feeds',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(CupertinoIcons.search),
+          label: 'Search',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(CupertinoIcons.settings),
+          label: 'Settings',
+        ),
+      ],),
+      tabBuilder: (context, index) {
+        switch (index) {
+        case 0:
+          return FeedsPage();
+        case 1:
+          return SearchPage();
+        case 2:
+          return SettingsPage();
+        default:
+          return Center(
+            child: Text('Page not found!'),
+          );
+      }},
     );
   }
 }
