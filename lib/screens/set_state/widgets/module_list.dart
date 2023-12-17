@@ -31,6 +31,12 @@ class _ModuleListState extends State<ModuleList> {
       itemBuilder: (context, index) {
         return ModuleTile(
           moduleName: _moduleList[index],
+          isDone: widget.doneModuleList.contains(_moduleList[index]),
+          onClick: () {
+            setState(() {
+              widget.doneModuleList.add(_moduleList[index]);
+            });
+          },
         );
       },
     );
