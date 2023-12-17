@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'screens/main_screen.dart';
+import 'screens/providers/provider_screen.dart';
 import 'screens/set_state/done_module_list.dart';
 import 'screens/set_state/set_state_screen.dart';
 
@@ -30,6 +32,7 @@ class MyApp extends StatelessWidget {
               doneModuleList:
                   ModalRoute.of(context)?.settings.arguments as List<String>,
             ),
+        '/provider': (context) => const ProviderScreen(),
       },
     );
   }
