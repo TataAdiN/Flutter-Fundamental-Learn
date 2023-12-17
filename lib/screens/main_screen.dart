@@ -33,16 +33,17 @@ class _MainScreenState extends State<MainScreen> {
               thickness: 0,
             ),
             ListTile(
-              onTap: ()=> Navigator.pushNamed(context, '/set_state'),
+              onTap: () => Navigator.pushNamed(context, '/set_state'),
               tileColor: Colors.white,
               title: const Text('setState'),
             ),
             const Divider(
               thickness: 0,
             ),
-            const ListTile(
+            ListTile(
+              onTap: () => Navigator.pushNamed(context, '/provider'),
               tileColor: Colors.white,
-              title: Text('Provider'),
+              title: const Text('Provider'),
             ),
           ],
         ),
