@@ -70,27 +70,11 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
-  flutter_rating_bar:
-    dependency: "direct main"
-    description:
-      name: flutter_rating_bar
-      sha256: d2af03469eac832c591a1eba47c91ecc871fe5708e69967073c043b2d775ed93
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.0.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"
-  line_icons:
-    dependency: "direct main"
-    description:
-      name: line_icons
-      sha256: "249d781d922f5437ac763d9c8f5a02cf5b499a6dc3f85e4b92e074cff0a932ab"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.3"
   lints:
     dependency: transitive
     description:
@@ -131,14 +115,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.3"
-  readmore:
-    dependency: "direct main"
-    description:
-      name: readmore
-      sha256: "99c2483202f7c7e98c50834d72be2b119aefecf4497ca1960ae9d5f418eb1481"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.2.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -210,4 +186,3 @@ packages:
     version: "0.3.0"
 sdks:
   dart: ">=3.2.3 <4.0.0"
-  flutter: ">=2.5.0"
