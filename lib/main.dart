@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'screens/main_screen.dart';
-import 'models/restaurant.dart';
-import 'screens/restaurant_screen.dart';
+import 'screens/set_state/done_module_list.dart';
+import 'screens/set_state/set_state_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Indonesian Restaurant',
+      title: 'State Management',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: Theme.of(context).colorScheme.copyWith(
@@ -26,9 +25,11 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const MainScreen(),
-        '/restaurant': (context) => RestaurantScreen(
-            restaurant:
-                ModalRoute.of(context)?.settings.arguments as Restaurant),
+        '/set_state': (context) => const SetStateScreen(),
+        '/set_state.done': (context) => DoneModuleList(
+              doneModuleList:
+                  ModalRoute.of(context)?.settings.arguments as List<String>,
+            ),
       },
     );
   }
