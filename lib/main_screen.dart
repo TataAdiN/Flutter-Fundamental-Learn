@@ -13,17 +13,6 @@ class MainScreen extends StatelessWidget {
       body: ListView(
         children: [
           InkWell(
-            onTap: () => Navigator.pushNamed(context, '/fundamental_app'),
-            child: const Padding(
-              padding: EdgeInsets.only(top: 10),
-              child: ListTile(
-                tileColor: Colors.white,
-                title: Text('Flutter Navigation'),
-                subtitle: Text('Flutter Navigation Fundamental Learning'),
-              ),
-            ),
-          ),
-          InkWell(
             onTap: () => Navigator.pushNamed(context, '/news_app'),
             child: const Padding(
               padding: EdgeInsets.only(top: 10),
@@ -36,13 +25,13 @@ class MainScreen extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: () => Navigator.pushNamed(context, '/flutter_ui'),
+            onTap: () => Navigator.pushNamed(context, '/flutter_network'),
             child: const Padding(
               padding: EdgeInsets.only(top: 10),
               child: ListTile(
                 tileColor: Colors.white,
-                title: Text('Flutter UI'),
-                subtitle: Text('Flutter UI Design Fundamental Learning'),
+                title: Text('Flutter Network'),
+                subtitle: Text('Flutter Network Fundamental Learning'),
               ),
             ),
           )
