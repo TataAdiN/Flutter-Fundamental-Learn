@@ -1,11 +1,24 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
-import 'models/article.dart';
+import 'models/article_result.dart';
+import 'utils/api_service.dart';
+import 'widgets/card_article.dart';
 
-class NewsApp extends StatelessWidget {
+class NewsApp extends StatefulWidget {
   const NewsApp({super.key});
+
+  @override
+  State<NewsApp> createState() => _NewsAppState();
+}
+
+class _NewsAppState extends State<NewsApp> {
+  late Future<ArticleResult> _article;
+
+  @override
+  void initState() {
+    super.initState();
+    _article = ApiService().topHeadlines();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,50 +26,42 @@ class NewsApp extends StatelessWidget {
       appBar: AppBar(
         title: const Text('News App'),
       ),
-      body: FutureBuilder<String>(
-        future:
-            DefaultAssetBundle.of(context).loadString('assets/articles.json'),
-        builder: (context, snapshot) {
-          final List<Article> articles = _parseArticles(snapshot.data);
-          return ListView.separated(
-            itemCount: articles.length,
-            separatorBuilder: (BuildContext context, int index) =>
-                const Divider(height: 1),
-            itemBuilder: (context, index) {
-              return _buildArticleItem(context, articles[index]);
-            },
-          );
+      body: FutureBuilder<ArticleResult>(
+        future: _article,
+        builder: (context, AsyncSnapshot<ArticleResult> snapshot) {
+          var state = snapshot.connectionState;
+          if (state == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: Colors.deepOrangeAccent,
+              ),
+            );
+          } else {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                shrinkWrap: true,
+                itemCount: snapshot.data?.articles.length,
+                itemBuilder: (context, index) {
+                  var article = snapshot.data?.articles[index];
+                  return CardArticle(article: article!);
+                },
+              );
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Material(
+                  child: Text(
+                    snapshot.error.toString(),
+                  ),
+                ),
+              );
+            } else {
+              return const Material(
+                child: Text(''),
+              );
+            }
+          }
         },
       ),
-    );
-  }
-
-  List<Article> _parseArticles(String? json) {
-    if (json == null) {
-      return [];
-    }
-    final List parsed = jsonDecode(json);
-    return parsed.map((json) => Article.fromJson(json)).toList();
-  }
-
-  Widget _buildArticleItem(BuildContext context, Article article) {
-    return ListTile(
-      onTap: () =>
-          Navigator.pushNamed(context, '/news_app.detail', arguments: article),
-      contentPadding:
-          const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      leading: Hero(
-        tag: article.urlToImage,
-        child: Image.network(
-          article.urlToImage,
-          width: 100,
-          errorBuilder: (ctx, error, _) => const Center(
-            child: Icon(Icons.error),
-          ),
-        ),
-      ),
-      title: Text(article.title),
-      subtitle: Text(article.author),
     );
   }
 }

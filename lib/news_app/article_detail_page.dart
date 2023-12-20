@@ -17,15 +17,17 @@ class ArticleDetailPage extends StatelessWidget {
         child: Column(
           children: [
             Hero(
-              tag: article.urlToImage,
-              child: Image.network(article.urlToImage),
+              tag: article.urlToImage!,
+              child: Image.network(article.urlToImage!),
             ),
             Padding(
               padding: const EdgeInsets.all(10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(article.description),
+                  Text(
+                    article.description ?? "",
+                  ),
                   const Divider(color: Colors.grey),
                   Text(
                     article.title,
@@ -36,12 +38,16 @@ class ArticleDetailPage extends StatelessWidget {
                     ),
                   ),
                   const Divider(color: Colors.grey),
-                  Text('Date: ${article.publishedAt}'),
+                  Text(
+                    'Date: ${article.publishedAt}',
+                  ),
                   const SizedBox(height: 10),
-                  Text('Author: ${article.author}'),
+                  Text(
+                    'Author: ${article.author}',
+                  ),
                   const Divider(color: Colors.grey),
                   Text(
-                    article.content,
+                    article.content ?? "",
                     style: const TextStyle(fontSize: 16),
                   ),
                   const SizedBox(height: 10),
@@ -56,9 +62,10 @@ class ArticleDetailPage extends StatelessWidget {
                       ),
                     ),
                     child: const Text('Read more'),
-                    onPressed: () => Navigator.pushNamed(
-                        context, '/news_app.webview',
-                        arguments: article.url),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/news_app.webview',
+                          arguments: article.url);
+                    },
                   ),
                 ],
               ),
