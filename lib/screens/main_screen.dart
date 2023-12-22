@@ -33,9 +33,17 @@ class _MainScreenState extends State<MainScreen> {
               thickness: 0,
             ),
             ListTile(
+              onTap: () => Navigator.pushNamed(context, '/notification'),
+              tileColor: Colors.white,
+              title: const Text('Notification'),
+            ),
+            const Divider(
+              thickness: 0,
+            ),
+            ListTile(
               onTap: () => Navigator.pushNamed(context, '/set_state'),
               tileColor: Colors.white,
-              title: const Text('setState'),
+              title: const Text('Alarm'),
             ),
             const Divider(
               thickness: 0,
@@ -43,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
             ListTile(
               onTap: () => Navigator.pushNamed(context, '/provider'),
               tileColor: Colors.white,
-              title: const Text('Provider'),
+              title: const Text('New App Notification'),
             ),
           ],
         ),

@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fundamental/screens/notification/helpers/notification_helper.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'screens/main_screen.dart';
+import 'screens/notification/detail_notification_screen.dart';
 import 'screens/providers/done_module_list.dart';
 import 'screens/providers/provider_screen.dart';
-import 'screens/set_state/done_module_list.dart';
-import 'screens/set_state/set_state_screen.dart';
+import 'screens/notification/notification_screen.dart';
 
-void main() {
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+FlutterLocalNotificationsPlugin();
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final NotificationHelper notificationHelper = NotificationHelper();
+  await notificationHelper.initNotifications(flutterLocalNotificationsPlugin);
   runApp(const MyApp());
 }
 
@@ -28,11 +36,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const MainScreen(),
-        '/set_state': (context) => const SetStateScreen(),
-        '/set_state.done': (context) => DoneModuleList(
-              doneModuleList:
-                  ModalRoute.of(context)?.settings.arguments as List<String>,
-            ),
+        '/notification': (context) => const NotificationScreen(),
+        '/notification.detail': (context) => const DetailNotificationScreen(),
         '/provider': (context) => const ProviderScreen(),
         '/provider.done': (context) => DoneModuleListProvider(
           doneModuleList:
