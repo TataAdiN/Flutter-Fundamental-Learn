@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-
-import '../set_state/widgets/module_list.dart';
 import 'providers/done_module_provider.dart';
 
 class ProviderScreen extends StatelessWidget {
@@ -34,7 +32,7 @@ class ProviderScreen extends StatelessWidget {
             statusBarBrightness: Brightness.light,
             statusBarIconBrightness: Brightness.dark,
           ),
-          child: ModuleList(doneModuleList: doneModuleList),
+          child: Container(),
         ),
       )
     );

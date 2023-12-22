@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../set_state/widgets/module_tile.dart';
 import 'providers/done_module_provider.dart';
 
 class ModuleList extends StatefulWidget {
@@ -33,13 +32,7 @@ class _ModuleListState extends State<ModuleList> {
       itemBuilder: (context, index) {
         return Consumer<DoneModuleProvider>(
           builder: (context, DoneModuleProvider data, widget) {
-            return ModuleTile(
-              moduleName: _moduleList[index],
-              isDone: data.doneModuleList.contains(_moduleList[index]),
-              onClick: () {
-                data.complete(_moduleList[index]);
-              },
-            );
+            return Container();
           },
         );
       },

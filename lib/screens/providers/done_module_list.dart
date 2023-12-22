@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import 'providers/done_module_provider.dart';
 
 class DoneModuleListProvider extends StatelessWidget {
   const DoneModuleListProvider({super.key, required this.doneModuleList});
