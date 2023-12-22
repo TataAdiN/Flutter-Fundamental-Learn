@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'widgets/module_list.dart';
-
 class SetStateScreen extends StatefulWidget {
   const SetStateScreen({super.key});
 
