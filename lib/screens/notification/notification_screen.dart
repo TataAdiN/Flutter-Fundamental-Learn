@@ -48,7 +48,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
           statusBarBrightness: Brightness.light,
           statusBarIconBrightness: Brightness.dark,
         ),
-        child:  Padding(
+        child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,

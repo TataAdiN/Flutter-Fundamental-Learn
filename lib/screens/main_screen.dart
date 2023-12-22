@@ -41,7 +41,7 @@ class _MainScreenState extends State<MainScreen> {
               thickness: 0,
             ),
             ListTile(
-              onTap: () => Navigator.pushNamed(context, '/set_state'),
+              onTap: () => Navigator.pushNamed(context, '/alarm'),
               tileColor: Colors.white,
               title: const Text('Alarm'),
             ),
