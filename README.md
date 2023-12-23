@@ -1,2 +1,3 @@
 # Flutter-Fundamental-Dicoding
-# Submission 1
+# Submission 2
+Flutter State Management and Internet Connection
