@@ -1,11 +1,12 @@
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_fundamental/screens/alarm/alarm_screen.dart';
-import 'package:flutter_fundamental/screens/notification/helpers/notification_helper.dart';
+import 'package:flutter_fundamental/screens/news_app/utils/notification_helper.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+import 'screens/alarm/alarm_screen.dart';
 import 'screens/alarm/services/background_service.dart';
 import 'screens/main_screen.dart';
+import 'screens/news_app/news_app.dart';
 import 'screens/notification/detail_notification_screen.dart';
 import 'screens/notification/notification_screen.dart';
 
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
         '/notification': (context) => const NotificationScreen(),
         '/notification.detail': (context) => const DetailNotificationScreen(),
         '/alarm': (context) => const AlarmScreen(),
+        '/news_app': (context) => const NewsApp(),
       },
     );
   }

@@ -49,7 +49,7 @@ class _MainScreenState extends State<MainScreen> {
               thickness: 0,
             ),
             ListTile(
-              onTap: () => Navigator.pushNamed(context, '/provider'),
+              onTap: () => Navigator.pushNamed(context, '/news_app'),
               tileColor: Colors.white,
               title: const Text('New App Notification'),
             ),

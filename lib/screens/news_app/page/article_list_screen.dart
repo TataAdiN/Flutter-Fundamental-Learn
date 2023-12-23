@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'enums/result_state.dart';
-import 'providers/new_provider.dart';
-import 'widgets/card_article.dart';
+import '../enums/result_state.dart';
+import '../providers/new_provider.dart';
+import '../widgets/card_article.dart';
 
-class ArticleListPage extends StatelessWidget {
-  const ArticleListPage({super.key});
+class ArticleListScreen extends StatelessWidget {
+  const ArticleListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

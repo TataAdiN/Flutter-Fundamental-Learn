@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import 'widgets/short_appbar_scaffold.dart';
+import '../widgets/short_appbar_scaffold.dart';
 
 class ArticleWebView extends StatelessWidget {
   final String url;

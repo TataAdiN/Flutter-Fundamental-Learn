@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'models/article.dart';
+import '../models/article.dart';
 
-class ArticleDetailPage extends StatelessWidget {
+class ArticleDetailScreen extends StatelessWidget {
   final Article article;
 
-  const ArticleDetailPage({super.key, required this.article});
+  const ArticleDetailScreen({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {
