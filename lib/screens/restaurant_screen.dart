@@ -3,7 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:readmore/readmore.dart';
 
-import '../models/restaurant.dart';
+import '../data/models/restaurant.dart';
 import '../utils/responsive.dart';
 import '../widgets/sliver_pinned_header.dart';
 import 'widgets/expandable_appbar_with_image.dart';
@@ -21,7 +21,7 @@ class RestaurantScreen extends StatelessWidget {
       body: SafeArea(
         child: NestedScrollView(
           headerSliverBuilder: (context, isScrolled) {
-            return [
+            return [Container()];/*[
               ExpandableAppbarWithImage(
                   maxHeight: Responsive.adjust(
                     screenSize: screenHeight,
@@ -29,7 +29,7 @@ class RestaurantScreen extends StatelessWidget {
                   ),
                   imgUrl: restaurant.imgUrl,
                   title: restaurant.name),
-            ];
+            ]*/;
           },
           body: CustomScrollView(
             slivers: [
@@ -91,10 +91,11 @@ class RestaurantScreen extends StatelessWidget {
                   percentage: 6,
                 ),
               ),
+              /*
               RestaurantMenuSection(
                 menus: restaurant.menus.foods,
                 icon: Icons.restaurant_sharp,
-              ),
+              ),*/
               SliverPinnedHeader(
                 widget: Container(
                   color: Colors.white,
@@ -127,10 +128,11 @@ class RestaurantScreen extends StatelessWidget {
                   percentage: 6,
                 ),
               ),
+              /*
               RestaurantMenuSection(
                 menus: restaurant.menus.drinks,
                 icon: Icons.coffee_outlined,
-              ),
+              ),*/
             ],
           ),
         ),
@@ -173,7 +175,7 @@ class RestaurantScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10),
               child: ReadMoreText(
-                restaurant.desc,
+                'restaurant.desc',
                 textAlign: TextAlign.justify,
                 trimLines: 3,
                 trimMode: TrimMode.Line,

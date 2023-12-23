@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'data/models/restaurant.dart';
 import 'screens/main_screen.dart';
-import 'models/restaurant.dart';
 import 'screens/restaurant_screen.dart';
 
 void main() {

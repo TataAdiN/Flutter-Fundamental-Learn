@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fundamental/data/api_service.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
-import '../../models/restaurant.dart';
+import '../../data/models/restaurant.dart';
 
 class RestaurantCard extends StatelessWidget {
   const RestaurantCard({
@@ -27,7 +28,7 @@ class RestaurantCard extends StatelessWidget {
           child: Row(
             children: [
               Hero(
-                tag: restaurant.imgUrl,
+                tag: ApiService.imageUrl(restaurant.pictureId),
                 child: Container(
                   height: imgHeight,
                   width: imgWidth,
@@ -37,7 +38,7 @@ class RestaurantCard extends StatelessWidget {
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: NetworkImage(restaurant.imgUrl),
+                      image: NetworkImage(ApiService.imageUrl(restaurant.pictureId)),
                     ),
                   ),
                 ),

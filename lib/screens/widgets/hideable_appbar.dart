@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
 
 class HideableAppBar extends StatelessWidget {
   const HideableAppBar({
@@ -12,17 +13,23 @@ class HideableAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      pinned: false,
+      pinned: true,
       snap: false,
       floating: false,
       expandedHeight: maxHeight,
       elevation: 0,
       flexibleSpace: FlexibleSpaceBar(
-        centerTitle: true,
+        centerTitle: false,
         titlePadding: const EdgeInsets.all(10),
         title: widget,
       ),
+      automaticallyImplyLeading: false,
       backgroundColor: Colors.white,
+      actions: const [
+        Padding(
+          padding: EdgeInsets.only(right: 20),
+            child: Icon(LineIcons.search, size: 32,))
+      ],
     );
   }
 }
