@@ -40,6 +40,7 @@ dependencies:
   readmore: ^2.2.0
   http: ^1.1.2
   provider: ^6.1.1
+  lottie: ^2.7.0
 
 dev_dependencies:
   flutter_test:
@@ -69,7 +70,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/icon.png
-    - assets/local_restaurant.json
+    - assets/food_search.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
