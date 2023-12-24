@@ -6,8 +6,6 @@ import 'package:readmore/readmore.dart';
 import '../data/models/restaurant.dart';
 import '../utils/responsive.dart';
 import '../widgets/sliver_pinned_header.dart';
-import 'widgets/expandable_appbar_with_image.dart';
-import 'widgets/restaurant_menu_section.dart';
 
 class RestaurantScreen extends StatelessWidget {
   const RestaurantScreen({super.key, required this.restaurant});
