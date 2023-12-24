@@ -11,10 +11,7 @@ import 'widgets/custom_sliver_appbar.dart';
 import 'widgets/restaurant_card.dart';
 
 class MainScreen extends StatelessWidget {
-  MainScreen({super.key});
-
-  List<Restaurant> restaurants = [];
-  List<Restaurant> persistRestaurants = [];
+  const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -66,15 +63,6 @@ class MainScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void _filter(String queryParam) {
-    List<Restaurant> filtered = [];
-    for (var item in persistRestaurants) {
-      if (item.name.toLowerCase().contains(queryParam.toLowerCase())) {
-        filtered.add(item);
-      }
-    }
   }
 
   Widget _content(List<Restaurant> restaurants, double screenWidth) =>
