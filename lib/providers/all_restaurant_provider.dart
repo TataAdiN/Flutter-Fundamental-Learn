@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import '../data/api_service.dart';
@@ -16,9 +18,7 @@ class AllRestaurantProvider extends ChangeNotifier {
   String _message = '';
 
   String get message => _message;
-
   AllRestaurantResult get result => _allRestaurantResult;
-
   ResultState get state => _state;
 
   Future<dynamic> _fetchAllArticle() async {
@@ -35,6 +35,8 @@ class AllRestaurantProvider extends ChangeNotifier {
         notifyListeners();
         return _allRestaurantResult = result;
       }
+    } on SocketException catch (_) {
+      _state = ResultState.noInternet;
     } catch (e) {
       _state = ResultState.error;
       notifyListeners();
