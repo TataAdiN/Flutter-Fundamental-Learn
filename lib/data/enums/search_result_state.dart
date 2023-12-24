@@ -1,0 +1,1 @@
+enum SearchResultState { loading, noData, hasData, error, noInternet, idle }
