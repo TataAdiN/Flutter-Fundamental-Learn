@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/hideable_sliver_appbar_title.dart';
+import 'hideable_sliver_appbar_title.dart';
 
 class ExpandableAppbarWithImage extends StatelessWidget {
   const ExpandableAppbarWithImage({
