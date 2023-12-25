@@ -31,6 +31,7 @@ class ExpandableAppbarWithImage extends StatelessWidget {
         ),
       ),
       expandedHeight: maxHeight,
+      surfaceTintColor: Colors.white,
       flexibleSpace: FlexibleSpaceBar(
         background: Hero(
           tag: imgUrl,
