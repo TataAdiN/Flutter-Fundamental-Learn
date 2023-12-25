@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_fundamental/data/enums/search_result_state.dart';
 
 import '../data/api_service.dart';
+import '../data/enums/search_result_state.dart';
 import '../data/models/search_result.dart';
 
 class SearchRestaurantProvider extends ChangeNotifier {
