@@ -14,7 +14,7 @@ class MainPage extends StatelessWidget{
       create: (_) => AllRestaurantProvider(
         apiService: ApiService(),
       ),
-      child: MainScreen(),
+      child: const MainScreen(),
     );
   }
 

@@ -24,7 +24,7 @@ class RestaurantCard extends StatelessWidget {
       child: Card(
         color: Colors.white,
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(12.0),
           child: Row(
             children: [
               Column(
@@ -37,17 +37,19 @@ class RestaurantCard extends StatelessWidget {
                       decoration: BoxDecoration(
                         border: Border.all(width: 2, color: Colors.grey),
                         shape: BoxShape.rectangle,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10)),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(12),
+                        ),
                         image: DecorationImage(
                           fit: BoxFit.cover,
                           image: NetworkImage(
-                              ApiService.imageUrl(restaurant.pictureId)),
+                            ApiService.imageUrl(restaurant.pictureId),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   RatingBarIndicator(
                     rating: restaurant.rating.roundToDouble(),
                     itemCount: 5,
@@ -70,13 +72,15 @@ class RestaurantCard extends StatelessWidget {
                     Text(
                       restaurant.name,
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 18),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
                     ),
                     Row(
                       children: [
                         const Icon(LineIcons.mapMarked, size: 20),
                         const SizedBox(
-                          width: 5,
+                          width: 4,
                         ),
                         Text(
                           restaurant.city,
@@ -84,7 +88,7 @@ class RestaurantCard extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 8,
                     ),
                     Text(
                       restaurant.description,

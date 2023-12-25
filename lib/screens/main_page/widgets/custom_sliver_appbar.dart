@@ -27,7 +27,7 @@ class CustomSliverAppBar extends StatelessWidget {
       elevation: 0,
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: isCenter,
-        titlePadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        titlePadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         title: widget,
       ),
       automaticallyImplyLeading: showBackNav,
