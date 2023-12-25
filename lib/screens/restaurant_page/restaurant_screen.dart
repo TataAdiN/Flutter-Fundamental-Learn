@@ -3,13 +3,13 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:readmore/readmore.dart';
 
+import '../component_widgets/expandable_appbar_with_image.dart';
 import '../component_widgets/sliver_pinned_header.dart';
 import '../data/models/restaurant.dart';
 import '../utils/responsive.dart';
 
 class RestaurantScreen extends StatelessWidget {
-  const RestaurantScreen({super.key, required this.restaurant});
-  final Restaurant restaurant;
+  const RestaurantScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +19,15 @@ class RestaurantScreen extends StatelessWidget {
       body: SafeArea(
         child: NestedScrollView(
           headerSliverBuilder: (context, isScrolled) {
-            return [Container()];/*[
+            return [
               ExpandableAppbarWithImage(
                   maxHeight: Responsive.adjust(
                     screenSize: screenHeight,
                     percentage: 30,
                   ),
-                  imgUrl: restaurant.imgUrl,
-                  title: restaurant.name),
-            ]*/;
+                  imgUrl: 'restaurant.imgUrl',
+                  title: 'restaurant.name'),
+            ];
           },
           body: CustomScrollView(
             slivers: [
@@ -38,7 +38,7 @@ class RestaurantScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(10),
                     child: Align(
                       child: Text(
-                        restaurant.name,
+                        'restaurant.name',
                         style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -149,7 +149,7 @@ class RestaurantScreen extends StatelessWidget {
                   width: 5,
                 ),
                 Text(
-                  restaurant.city,
+                  'restaurant.city',
                   style: const TextStyle(fontSize: 18),
                 ),
               ],
@@ -159,7 +159,7 @@ class RestaurantScreen extends StatelessWidget {
             ),
             Center(
               child: RatingBarIndicator(
-                rating: restaurant.rating.roundToDouble(),
+                rating: 12 /*restaurant.rating.roundToDouble()*/,
                 itemCount: 5,
                 itemPadding: const EdgeInsets.symmetric(horizontal: 1.0),
                 itemBuilder: (context, _) => const Icon(
