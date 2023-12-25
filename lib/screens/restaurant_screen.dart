@@ -3,9 +3,9 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:readmore/readmore.dart';
 
+import '../component_widgets/sliver_pinned_header.dart';
 import '../data/models/restaurant.dart';
 import '../utils/responsive.dart';
-import '../widgets/sliver_pinned_header.dart';
 
 class RestaurantScreen extends StatelessWidget {
   const RestaurantScreen({super.key, required this.restaurant});
