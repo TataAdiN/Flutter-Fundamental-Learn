@@ -6,7 +6,7 @@ import '../../component_widgets/pinned_searchbar.dart';
 import '../../data/enums/search_result_state.dart';
 import '../../providers/search_restaurant_provider.dart';
 import '../../utils/responsive.dart';
-import '../main_page/widgets/custom_sliver_appbar.dart';
+import '../../component_widgets/custom_sliver_appbar.dart';
 import '../widgets/restaurant_sliver_list.dart';
 import 'widgets/search_animation.dart';
 
@@ -41,26 +41,28 @@ class SearchScreen extends StatelessWidget {
                   percentage: 100,
                 ),
               ),
-              Consumer<SearchRestaurantProvider>(builder: (
-                BuildContext context,
-                SearchRestaurantProvider provider,
-                _,
-              ) {
-                if (provider.state == SearchResultState.loading) {
-                  return SliverToBoxAdapter(
-                    child: SearchAnimation(
-                      paddingTop: Responsive.adjust(
-                          screenSize: screenHeight, percentage: 10),
-                    ),
-                  );
-                } else if (provider.state == SearchResultState.hasData) {
-                  return RestaurantSliverList(
-                    restaurants: provider.result.restaurants,
-                    screenWidth: screenWidth,
-                  );
-                }
-                return const SliverToBoxAdapter();
-              }),
+              Consumer<SearchRestaurantProvider>(
+                builder: (
+                  BuildContext context,
+                  SearchRestaurantProvider provider,
+                  _,
+                ) {
+                  if (provider.state == SearchResultState.loading) {
+                    return SliverToBoxAdapter(
+                      child: SearchAnimation(
+                        paddingTop: Responsive.adjust(
+                            screenSize: screenHeight, percentage: 10),
+                      ),
+                    );
+                  } else if (provider.state == SearchResultState.hasData) {
+                    return RestaurantSliverList(
+                      restaurants: provider.result.restaurants,
+                      screenWidth: screenWidth,
+                    );
+                  }
+                  return const SliverToBoxAdapter();
+                },
+              ),
             ],
           ),
         ),
