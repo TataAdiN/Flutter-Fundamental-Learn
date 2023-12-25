@@ -4,11 +4,10 @@ import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/enums/result_state.dart';
-import '../../data/models/restaurant.dart';
 import '../../providers/all_restaurant_provider.dart';
 import '../../utils/responsive.dart';
+import '../widgets/restaurant_sliver_list.dart';
 import 'widgets/custom_sliver_appbar.dart';
-import 'widgets/restaurant_card.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -46,7 +45,10 @@ class MainScreen extends StatelessWidget {
                     ),
                   );
                 } else if (state.state == ResultState.hasData) {
-                  return _content(state.result.restaurants, screenWidth);
+                  return RestaurantSliverList(
+                    restaurants: state.result.restaurants,
+                    screenWidth: screenWidth,
+                  );
                 } else if (state.state == ResultState.noData) {
                   return _emptyContent();
                 } else if (state.state == ResultState.error) {
@@ -64,38 +66,6 @@ class MainScreen extends StatelessWidget {
       ),
     );
   }
-
-  Widget _content(List<Restaurant> restaurants, double screenWidth) =>
-      SliverPadding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 20,
-          horizontal: 5,
-        ),
-        sliver: SliverList.builder(
-          itemCount: restaurants.length,
-          itemBuilder: (
-            BuildContext context,
-            int index,
-          ) {
-            return RestaurantCard(
-              onTap: () => Navigator.pushNamed(
-                context,
-                '/restaurant',
-                arguments: restaurants[index],
-              ),
-              restaurant: restaurants[index],
-              imgWidth: Responsive.adjust(
-                screenSize: screenWidth,
-                percentage: 20,
-              ),
-              imgHeight: Responsive.adjust(
-                screenSize: screenWidth,
-                percentage: 15,
-              ),
-            );
-          },
-        ),
-      );
 
   Widget _appBar(BuildContext context, double screenHeight) =>
       CustomSliverAppBar(
