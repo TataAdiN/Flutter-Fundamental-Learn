@@ -25,11 +25,25 @@ class CustomSliverAppBar extends StatelessWidget {
       floating: false,
       expandedHeight: maxHeight,
       elevation: 0,
+      surfaceTintColor: Colors.white,
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: isCenter,
         titlePadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         title: widget,
       ),
+      leading: showBackNav ? Container(
+        padding: const EdgeInsets.all(10),
+        child: ElevatedButton(
+          onPressed: () => Navigator.pop(context),
+          style: ElevatedButton.styleFrom(
+            shape: const CircleBorder(),
+            padding: EdgeInsets.zero,
+            backgroundColor: Colors.orange,
+            foregroundColor: Colors.deepOrangeAccent,
+          ),
+          child: const Icon(Icons.arrow_back, color: Colors.white),
+        ),
+      ) : null,
       automaticallyImplyLeading: showBackNav,
       backgroundColor: Colors.white,
       actions: actions,
