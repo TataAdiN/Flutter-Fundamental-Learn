@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'data/models/restaurant.dart';
 import 'screens/main_page/main_page.dart';
-import 'screens/restaurant_screen.dart';
+import 'screens/restaurant_page/restaurant_page.dart';
 import 'screens/search_page/search_page.dart';
 
 void main() {
@@ -32,9 +31,10 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const MainPage(),
-        '/restaurant': (context) => RestaurantScreen(
-            restaurant:
-                ModalRoute.of(context)?.settings.arguments as Restaurant),
+        '/restaurant': (context) => RestaurantPage(
+              restaurantId:
+                  ModalRoute.of(context)?.settings.arguments as String,
+            ),
         '/search': (context) => const SearchPage(),
       },
     );
