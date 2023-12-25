@@ -7,7 +7,7 @@ import '../../data/enums/result_state.dart';
 import '../../providers/all_restaurant_provider.dart';
 import '../../utils/responsive.dart';
 import '../widgets/restaurant_sliver_list.dart';
-import 'widgets/custom_sliver_appbar.dart';
+import '../../component_widgets/custom_sliver_appbar.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -29,37 +29,39 @@ class MainScreen extends StatelessWidget {
           child: CustomScrollView(
             slivers: [
               _appBar(context, screenHeight),
-              Consumer<AllRestaurantProvider>(builder: (context, state, _) {
-                if (state.state == ResultState.loading) {
-                  return SliverToBoxAdapter(
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        top: Responsive.adjust(
-                            screenSize: screenHeight, percentage: 10),
-                      ),
-                      child: const Center(
-                        child: CircularProgressIndicator(
-                          color: Colors.deepOrangeAccent,
+              Consumer<AllRestaurantProvider>(
+                builder: (context, state, _) {
+                  if (state.state == ResultState.loading) {
+                    return SliverToBoxAdapter(
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: Responsive.adjust(
+                              screenSize: screenHeight, percentage: 10),
+                        ),
+                        child: const Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.deepOrangeAccent,
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                } else if (state.state == ResultState.hasData) {
-                  return RestaurantSliverList(
-                    restaurants: state.result.restaurants,
-                    screenWidth: screenWidth,
-                  );
-                } else if (state.state == ResultState.noData) {
-                  return _emptyContent();
-                } else if (state.state == ResultState.error) {
-                  return SliverToBoxAdapter(
-                    child: Center(
-                      child: Text(state.message),
-                    ),
-                  );
-                }
-                return const SliverToBoxAdapter();
-              })
+                    );
+                  } else if (state.state == ResultState.hasData) {
+                    return RestaurantSliverList(
+                      restaurants: state.result.restaurants,
+                      screenWidth: screenWidth,
+                    );
+                  } else if (state.state == ResultState.noData) {
+                    return _emptyContent();
+                  } else if (state.state == ResultState.error) {
+                    return SliverToBoxAdapter(
+                      child: Center(
+                        child: Text(state.message),
+                      ),
+                    );
+                  }
+                  return const SliverToBoxAdapter();
+                },
+              )
             ],
           ),
         ),
