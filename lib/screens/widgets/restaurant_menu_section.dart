@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fundamental/data/models/category.dart';
+
+import 'menu_place_holder.dart';
 
 class RestaurantMenuSection extends StatelessWidget {
-  const RestaurantMenuSection({super.key, required this.icon});
-  //final List<Menu> menus;
+  const RestaurantMenuSection({super.key, required this.icon, required this.menus});
+  final List<Category> menus;
   final IconData icon;
 
   @override
@@ -12,7 +15,7 @@ class RestaurantMenuSection extends StatelessWidget {
       sliver: SliverGrid.count(
         crossAxisSpacing: 5.0,
         mainAxisSpacing: 5.0,
-        crossAxisCount: 3,/*
+        crossAxisCount: 3,
         children: menus
             .map(
               (food) => MenuPlaceHolder(
@@ -20,7 +23,7 @@ class RestaurantMenuSection extends StatelessWidget {
                 menu: food.name,
               ),
             )
-            .toList(),*/
+            .toList(),
       ),
     );
   }
