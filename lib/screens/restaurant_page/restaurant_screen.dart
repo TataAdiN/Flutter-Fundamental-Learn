@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
 
@@ -12,6 +11,7 @@ import '../../data/enums/restaurant_result_state.dart';
 import '../../data/models/restaurant.dart';
 import '../../providers/restaurant_provider.dart';
 import '../../utils/responsive.dart';
+import '../widgets/food_loading.dart';
 import '../widgets/restaurant_menu_section.dart';
 
 class RestaurantScreen extends StatelessWidget {
@@ -29,18 +29,10 @@ class RestaurantScreen extends StatelessWidget {
             _,
           ) {
             if (provider.state == RestaurantResultState.loading) {
-              return Padding(
-                padding: EdgeInsets.only(
-                  top: Responsive.adjust(
-                      screenSize: screenHeight, percentage: 10),
-                ),
-                child: Center(
-                  child: LottieBuilder.asset(
-                    'assets/food_loading.json',
-                    width: 120,
-                    height: 120,
-                    animate: true,
-                  ),
+              return FoodLoading(
+                paddingTop: Responsive.adjust(
+                  screenSize: screenHeight,
+                  percentage: 10,
                 ),
               );
             } else if (provider.state == RestaurantResultState.notExist) {
