@@ -1,18 +1,18 @@
-class Category {
+class RestaurantCategory {
   String name;
 
-  Category({
+  RestaurantCategory({
     required this.name,
   });
 
-  Category copyWith({
+  RestaurantCategory copyWith({
     String? name,
   }) =>
-      Category(
+      RestaurantCategory(
         name: name ?? this.name,
       );
 
-  factory Category.fromJson(Map<String, dynamic> json) => Category(
+  factory RestaurantCategory.fromJson(Map<String, dynamic> json) => RestaurantCategory(
         name: json["name"],
       );
 

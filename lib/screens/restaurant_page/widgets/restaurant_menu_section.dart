@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fundamental/data/models/category.dart';
+import 'package:flutter_fundamental/data/models/restaurant_category.dart';
 
-import 'menu_place_holder.dart';
+import '../../widgets/menu_place_holder.dart';
 
 class RestaurantMenuSection extends StatelessWidget {
   const RestaurantMenuSection({super.key, required this.icon, required this.menus});
-  final List<Category> menus;
+  final List<RestaurantCategory> menus;
   final IconData icon;
 
   @override
