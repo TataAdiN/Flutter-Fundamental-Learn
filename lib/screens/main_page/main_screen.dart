@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_fundamental/screens/widgets/empty_restaurant.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/enums/result_state.dart';
 import '../../providers/all_restaurant_provider.dart';
 import '../../utils/responsive.dart';
+import '../widgets/empty_restaurant.dart';
 import '../widgets/food_loading.dart';
 import '../widgets/restaurant_sliver_list.dart';
 import '../../component_widgets/custom_sliver_appbar.dart';
