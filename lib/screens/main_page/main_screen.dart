@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_fundamental/screens/widgets/empty_restaurant.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/enums/result_state.dart';
 import '../../providers/all_restaurant_provider.dart';
 import '../../utils/responsive.dart';
+import '../widgets/food_loading.dart';
 import '../widgets/restaurant_sliver_list.dart';
 import '../../component_widgets/custom_sliver_appbar.dart';
 
@@ -33,15 +35,10 @@ class MainScreen extends StatelessWidget {
                 builder: (context, state, _) {
                   if (state.state == ResultState.loading) {
                     return SliverToBoxAdapter(
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          top: Responsive.adjust(
-                              screenSize: screenHeight, percentage: 10),
-                        ),
-                        child: const Center(
-                          child: CircularProgressIndicator(
-                            color: Colors.deepOrangeAccent,
-                          ),
+                      child: FoodLoading(
+                        paddingTop: Responsive.adjust(
+                          screenSize: screenHeight,
+                          percentage: 10,
                         ),
                       ),
                     );
@@ -51,7 +48,7 @@ class MainScreen extends StatelessWidget {
                       screenWidth: screenWidth,
                     );
                   } else if (state.state == ResultState.noData) {
-                    return _emptyContent();
+                    return const EmptyRestaurant();
                   } else if (state.state == ResultState.error) {
                     return SliverToBoxAdapter(
                       child: Center(
@@ -103,16 +100,5 @@ class MainScreen extends StatelessWidget {
             ),
           )
         ],
-      );
-
-  Widget _emptyContent() => const SliverToBoxAdapter(
-        child: Center(
-          child: Column(
-            children: [
-              Icon(Icons.sentiment_dissatisfied),
-              Text('There are no restaurants available to display.'),
-            ],
-          ),
-        ),
       );
 }
