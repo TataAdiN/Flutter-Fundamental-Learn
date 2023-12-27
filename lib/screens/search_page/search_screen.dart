@@ -7,6 +7,7 @@ import '../../data/enums/search_result_state.dart';
 import '../../providers/search_restaurant_provider.dart';
 import '../../utils/responsive.dart';
 import '../../component_widgets/custom_sliver_appbar.dart';
+import '../widgets/empty_restaurant.dart';
 import '../widgets/restaurant_sliver_list.dart';
 import 'widgets/search_animation.dart';
 
@@ -59,6 +60,8 @@ class SearchScreen extends StatelessWidget {
                       restaurants: provider.result.restaurants,
                       screenWidth: screenWidth,
                     );
+                  } else if (provider.state == SearchResultState.noData) {
+                    return const EmptyRestaurant();
                   }
                   return const SliverToBoxAdapter();
                 },
