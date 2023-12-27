@@ -1,4 +1,4 @@
-import 'category.dart';
+import 'restaurant_category.dart';
 import 'customer_review.dart';
 import 'menus.dart';
 
@@ -9,7 +9,7 @@ class Restaurant {
   String pictureId;
   String city;
   double rating;
-  List<Category>? categories;
+  List<RestaurantCategory>? categories;
   Menus? menus;
   List<CustomerReview>? customerReviews;
 
@@ -31,7 +31,7 @@ class Restaurant {
     String? pictureId,
     String? city,
     double? rating,
-    List<Category>? categories,
+    List<RestaurantCategory>? categories,
     Menus? menus,
     List<CustomerReview>? customerReviews,
   }) =>
@@ -54,8 +54,8 @@ class Restaurant {
         city: json["city"],
         rating: json["rating"]?.toDouble(),
         categories: (json["categories"] != null)
-            ? List<Category>.from(
-                json["categories"].map((x) => Category.fromJson(x)))
+            ? List<RestaurantCategory>.from(
+                json["categories"].map((x) => RestaurantCategory.fromJson(x)))
             : null,
         menus:
             (json["categories"] != null) ? Menus.fromJson(json["menus"]) : null,

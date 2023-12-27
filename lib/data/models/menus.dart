@@ -1,8 +1,8 @@
-import 'category.dart';
+import 'restaurant_category.dart';
 
 class Menus {
-  List<Category> foods;
-  List<Category> drinks;
+  List<RestaurantCategory> foods;
+  List<RestaurantCategory> drinks;
 
   Menus({
     required this.foods,
@@ -10,8 +10,8 @@ class Menus {
   });
 
   Menus copyWith({
-    List<Category>? foods,
-    List<Category>? drinks,
+    List<RestaurantCategory>? foods,
+    List<RestaurantCategory>? drinks,
   }) =>
       Menus(
         foods: foods ?? this.foods,
@@ -19,8 +19,8 @@ class Menus {
       );
 
   factory Menus.fromJson(Map<String, dynamic> json) => Menus(
-    foods: List<Category>.from(json["foods"].map((x) => Category.fromJson(x))),
-    drinks: List<Category>.from(json["drinks"].map((x) => Category.fromJson(x))),
+    foods: List<RestaurantCategory>.from(json["foods"].map((x) => RestaurantCategory.fromJson(x))),
+    drinks: List<RestaurantCategory>.from(json["drinks"].map((x) => RestaurantCategory.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
