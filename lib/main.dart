@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'data/models/customer_review.dart';
+import 'data/models/restaurant.dart';
 import 'screens/main_page/main_page.dart';
 import 'screens/restaurant_page/restaurant_page.dart';
+import 'screens/restaurant_page/restaurant_review/restaurant_review_page.dart';
 import 'screens/search_page/search_page.dart';
 
 void main() {
@@ -34,6 +37,10 @@ class MyApp extends StatelessWidget {
         '/restaurant': (context) => RestaurantPage(
               restaurantId:
                   ModalRoute.of(context)?.settings.arguments as String,
+            ),
+        '/restaurant.review': (context) => RestaurantReviewPage(
+              restaurant:
+                  ModalRoute.of(context)?.settings.arguments as Restaurant,
             ),
         '/search': (context) => const SearchPage(),
       },
