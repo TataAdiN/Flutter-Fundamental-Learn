@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 
-class EmptyRestaurant extends StatelessWidget {
-  const EmptyRestaurant({super.key});
+class EmptyItem extends StatelessWidget {
+  const EmptyItem({super.key, required this.itemName});
+
+  final String itemName;
 
   @override
   Widget build(BuildContext context) {
-    return const SliverToBoxAdapter(
+    return SliverToBoxAdapter(
       child: Padding(
-        padding: EdgeInsets.only(top: 52),
+        padding: const EdgeInsets.only(top: 52),
         child: Center(
           child: Column(
             children: [
-              Icon(
+              const Icon(
                 Icons.sentiment_dissatisfied,
                 size: 32,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
-              Text('There are no restaurants available to display.'),
+              Text('There are no $itemName available to display.'),
             ],
           ),
         ),
