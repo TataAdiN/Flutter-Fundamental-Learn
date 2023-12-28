@@ -84,7 +84,7 @@ class RestaurantContent extends StatelessWidget {
                   ),
                   onPressed: () => Navigator.of(context).pushNamed(
                     '/restaurant.review',
-                    arguments: restaurant.customerReviews,
+                    arguments: restaurant,
                   ),
                 )
               ],
