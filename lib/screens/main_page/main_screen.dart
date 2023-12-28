@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../../data/enums/result_state.dart';
 import '../../providers/all_restaurant_provider.dart';
 import '../../utils/responsive.dart';
-import '../widgets/empty_restaurant.dart';
+import '../widgets/empty_item.dart';
 import '../widgets/food_loading.dart';
 import '../widgets/restaurant_sliver_list.dart';
 import '../../component_widgets/custom_sliver_appbar.dart';
@@ -48,7 +48,7 @@ class MainScreen extends StatelessWidget {
                       screenWidth: screenWidth,
                     );
                   } else if (state.state == ResultState.noData) {
-                    return const EmptyRestaurant();
+                    return const EmptyItem(itemName: 'restaurants',);
                   } else if (state.state == ResultState.error) {
                     return SliverToBoxAdapter(
                       child: Center(
