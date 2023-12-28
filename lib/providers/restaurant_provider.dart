@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../data/api_service.dart';
 import '../data/enums/restaurant_result_state.dart';
-import '../data/enums/result_state.dart';
 import '../data/models/restaurant_result.dart';
 
 class RestaurantProvider extends ChangeNotifier {
@@ -23,7 +22,6 @@ class RestaurantProvider extends ChangeNotifier {
   RestaurantResultState get state => _state;
 
   Future<dynamic> _get(String restaurantId) async {
-
     try {
       _state = RestaurantResultState.loading;
       notifyListeners();
