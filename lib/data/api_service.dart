@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import 'models/all_restaurant_result.dart';
+import 'models/customer_review.dart';
 import 'models/restaurant_result.dart';
 import 'models/search_result.dart';
 
@@ -31,11 +32,33 @@ class ApiService {
   }
 
   Future<RestaurantResult> get(String restaurantId) async {
-    final response = await http.get(Uri.parse("$_baseUrl/detail/$restaurantId"));
+    final response = await http.get(
+      Uri.parse("$_baseUrl/detail/$restaurantId"),
+    );
     if (response.statusCode == 200) {
       return RestaurantResult.fromJson(json.decode(response.body));
     } else {
       throw Exception('Failed to get restaurant with id: $restaurantId');
+    }
+  }
+
+  Future<RestaurantResult> postReview(
+    CustomerReview review,
+    String restaurantId,
+  ) async {
+    final response = await http.post(
+      Uri.parse("$_baseUrl/review"),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        "id": restaurantId,
+        "name": review.name,
+        "review": review.review,
+      }),
+    );
+    if (response.statusCode == 201) {
+      return RestaurantResult.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to post review at restaurant id: $restaurantId');
     }
   }
 }
