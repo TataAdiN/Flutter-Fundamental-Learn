@@ -3,16 +3,17 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../../../component_widgets/custom_sliver_appbar.dart';
+import '../../../component_widgets/scroll_when_list_changed.dart';
 import '../../../data/enums/restaurant_review_state.dart';
-import '../../../data/models/customer_review.dart';
 import '../../../providers/restaurant_review_provider.dart';
 import '../../../utils/responsive.dart';
+import '../../widgets/empty_item.dart';
+import 'widgets/restaurant_review_list.dart';
+import 'widgets/review_comment_box.dart';
 
 class RestaurantReviewScreen extends StatelessWidget {
-  RestaurantReviewScreen({super.key, required this.restaurantName});
+  const RestaurantReviewScreen({super.key, required this.restaurantName});
   final String restaurantName;
-
-  final TextEditingController reviewTextControl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +29,7 @@ class RestaurantReviewScreen extends StatelessWidget {
         child: Stack(
           children: [
             CustomScrollView(
+              physics: const ScrollWhenListChanged(),
               slivers: [
                 _appBar(context, screenHeight),
                 Consumer<RestaurantReviewProvider>(
@@ -37,72 +39,32 @@ class RestaurantReviewScreen extends StatelessWidget {
                     _,
                   ) {
                     if (provider.state == RestaurantReviewState.hasData) {
-                      return _restaurantReviewList(provider.reviews);
-                    } else if (provider.state ==
-                        RestaurantReviewState.noData) {}
+                      return RestaurantReviewList(reviews: provider.reviews);
+                    } else if (provider.state == RestaurantReviewState.noData) {
+                      return const EmptyItem(itemName: 'customer reviews');
+                    }
                     return const SliverToBoxAdapter();
                   },
                 ),
                 const SliverToBoxAdapter(
                   child: SizedBox(
-                    height: 64,
+                    height: 96,
                   ),
                 )
               ],
             ),
-            _commentBox(context)
-          ],
-        ),
-      ),
-    );
-  }
-
-  Align _commentBox(BuildContext context) {
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          border: Border(
-            top: BorderSide(
-              color: Colors.deepOrangeAccent,
-            ),
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: TextField(
-            controller: reviewTextControl,
-            minLines: 1,
-            maxLines: 10,
-            onChanged: (String text) =>
-                Provider.of<RestaurantReviewProvider>(context, listen: false)
-                    .listenTextReview(text),
-            style: const TextStyle(fontSize: 14),
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              suffix: TextButton(
-                onPressed: () {
+            ReviewCommentBox(
+              onTypeName: (name) =>
                   Provider.of<RestaurantReviewProvider>(context, listen: false)
-                      .writeReview();
-                  reviewTextControl.text = '';
-                },
-                child: const Text(
-                  'Send Review',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    color: Colors.deepOrangeAccent,
-                  ),
-                ),
-              ),
-              hintText: 'Write your review...',
-              hintStyle: const TextStyle(fontSize: 15),
-              isDense: true,
-              contentPadding: const EdgeInsets.only(left: 16),
-            ),
-          ),
+                      .listenTextName(name),
+              onTypeReview: (review) =>
+                  Provider.of<RestaurantReviewProvider>(context, listen: false)
+                      .listenTextReview(review),
+              onTapSend: (fieldName, fieldReview)=>
+                  Provider.of<RestaurantReviewProvider>(context, listen: false)
+                      .writeReview(context, fieldName, fieldReview),
+            )
+          ],
         ),
       ),
     );
@@ -121,40 +83,5 @@ class RestaurantReviewScreen extends StatelessWidget {
           textScaler: const TextScaler.linear(1),
         ),
         isCenter: true,
-      );
-
-  Widget _restaurantReviewList(List<CustomerReview> reviews) => SliverPadding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 20,
-          horizontal: 8,
-        ),
-        sliver: SliverList.builder(
-          itemCount: reviews.length,
-          itemBuilder: (
-            BuildContext context,
-            int index,
-          ) {
-            return Card(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      reviews[index].name,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Text(reviews[index].review),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(reviews[index].date),
-                    )
-                  ],
-                ),
-              ),
-            );
-          },
-        ),
       );
 }
