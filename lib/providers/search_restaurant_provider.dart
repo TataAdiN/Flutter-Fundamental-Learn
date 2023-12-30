@@ -14,12 +14,23 @@ class SearchRestaurantProvider extends ChangeNotifier {
   late SearchResult _searchResult;
   SearchResultState _state = SearchResultState.idle;
   String _message = '';
+  String _searchQuery = '';
 
   SearchResult get result => _searchResult;
   String get message => _message;
   SearchResultState get state => _state;
 
-  void searchRestaurant(String searchQuery) => _search(searchQuery);
+  void searchRestaurant(String searchQuery) {
+    if (searchQuery.isNotEmpty) {
+      _search(searchQuery);
+      _searchQuery = searchQuery;
+    } else {
+      _searchQuery = 'zzzzzzzzzzzzzzzzz';
+      _search(_searchQuery);
+    }
+  }
+
+  void retrySearch() => _search(_searchQuery);
 
   Future<dynamic> _search(String searchQuery) async {
     try {
@@ -37,6 +48,7 @@ class SearchRestaurantProvider extends ChangeNotifier {
       }
     } on SocketException catch (_) {
       _state = SearchResultState.noInternet;
+      notifyListeners();
     } catch (e) {
       _state = SearchResultState.error;
       notifyListeners();

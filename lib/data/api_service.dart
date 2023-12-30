@@ -58,7 +58,8 @@ class ApiService {
     if (response.statusCode == 201) {
       return RestaurantResult.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to post review at restaurant id: $restaurantId');
+      return throw Exception(
+          'Failed to post review at restaurant id: $restaurantId');
     }
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -30,6 +32,8 @@ class RestaurantReviewProvider extends ChangeNotifier {
   List<CustomerReview> get reviews => _customerReviews;
   RestaurantReviewState get state => _state;
 
+  void reload() => _firstLoad();
+
   void listenTextName(String textName) {
     _name = textName;
   }
@@ -61,7 +65,15 @@ class RestaurantReviewProvider extends ChangeNotifier {
       fieldReview.text = '';
       _name = '';
       _review = '';
-      apiService.postReview(review, restaurantId);
+      try {
+        await apiService.postReview(review, restaurantId);
+      } on SocketException catch (_) {
+        _state = RestaurantReviewState.noInternet;
+        notifyListeners();
+      } catch (e) {
+        _state = RestaurantReviewState.noInternet;
+        notifyListeners();
+      }
     }
     notifyListeners();
   }

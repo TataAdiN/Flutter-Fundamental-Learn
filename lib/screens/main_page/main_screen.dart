@@ -8,6 +8,7 @@ import '../../providers/all_restaurant_provider.dart';
 import '../../utils/responsive.dart';
 import '../widgets/empty_item.dart';
 import '../widgets/food_loading.dart';
+import '../widgets/no_internet.dart';
 import '../widgets/restaurant_sliver_list.dart';
 import '../../component_widgets/custom_sliver_appbar.dart';
 
@@ -48,19 +49,37 @@ class MainScreen extends StatelessWidget {
                       screenWidth: screenWidth,
                     );
                   } else if (state.state == ResultState.noData) {
-                    return const EmptyItem(itemName: 'restaurants',);
+                    return const EmptyItem(
+                      itemName: 'restaurants',
+                    );
                   } else if (state.state == ResultState.error) {
                     return SliverToBoxAdapter(
                       child: Center(
                         child: Text(state.message),
                       ),
                     );
+                  } else if (state.state == ResultState.noInternet) {
+                    return _noInternetAlert(context);
                   }
                   return const SliverToBoxAdapter();
                 },
               )
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  SliverToBoxAdapter _noInternetAlert(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 52),
+        child: NoInternet(
+          onRetry: () => Provider.of<AllRestaurantProvider>(
+            context,
+            listen: false,
+          ).retry(),
         ),
       ),
     );

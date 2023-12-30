@@ -8,8 +8,10 @@ import '../data/models/restaurant_result.dart';
 
 class RestaurantProvider extends ChangeNotifier {
   final ApiService apiService;
+  late String _restaurantId;
 
   RestaurantProvider({required this.apiService, required String restaurantId}) {
+    _restaurantId = restaurantId;
     _get(restaurantId);
   }
 
@@ -20,6 +22,8 @@ class RestaurantProvider extends ChangeNotifier {
   String get message => _message;
   RestaurantResult get result => _restaurantResult;
   RestaurantResultState get state => _state;
+
+  void retry() => _get(_restaurantId);
 
   Future<dynamic> _get(String restaurantId) async {
     try {
@@ -37,6 +41,7 @@ class RestaurantProvider extends ChangeNotifier {
       }
     } on SocketException catch (_) {
       _state = RestaurantResultState.noInternet;
+      notifyListeners();
     } catch (e) {
       _state = RestaurantResultState.error;
       notifyListeners();

@@ -8,6 +8,7 @@ import '../../../data/enums/restaurant_review_state.dart';
 import '../../../providers/restaurant_review_provider.dart';
 import '../../../utils/responsive.dart';
 import '../../widgets/empty_item.dart';
+import '../../widgets/no_internet.dart';
 import 'widgets/restaurant_review_list.dart';
 import 'widgets/review_comment_box.dart';
 
@@ -42,6 +43,9 @@ class RestaurantReviewScreen extends StatelessWidget {
                       return RestaurantReviewList(reviews: provider.reviews);
                     } else if (provider.state == RestaurantReviewState.noData) {
                       return const EmptyItem(itemName: 'customer reviews');
+                    }
+                    else if (provider.state == RestaurantReviewState.noInternet) {
+                      return _noInternetAlert(context);
                     }
                     return const SliverToBoxAdapter();
                   },
@@ -84,4 +88,18 @@ class RestaurantReviewScreen extends StatelessWidget {
         ),
         isCenter: true,
       );
+
+  SliverToBoxAdapter _noInternetAlert(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 52),
+        child: NoInternet(
+          onRetry: () => Provider.of<RestaurantReviewProvider>(
+            context,
+            listen: false,
+          ).reload(),
+        ),
+      ),
+    );
+  }
 }

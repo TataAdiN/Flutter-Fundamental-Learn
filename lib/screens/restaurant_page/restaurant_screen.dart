@@ -9,6 +9,7 @@ import '../../data/models/restaurant.dart';
 import '../../providers/restaurant_provider.dart';
 import '../../utils/responsive.dart';
 import '../widgets/food_loading.dart';
+import '../widgets/no_internet.dart';
 import 'widgets/pinned_menu_heading.dart';
 import 'widgets/restaurant_content.dart';
 import 'widgets/restaurant_menu_section.dart';
@@ -40,6 +41,13 @@ class RestaurantScreen extends StatelessWidget {
             } else if (provider.state == RestaurantResultState.exist) {
               Restaurant? restaurant = provider.result.restaurant;
               return _buildRestaurant(restaurant!, screenHeight);
+            } else if (provider.state == RestaurantResultState.noInternet) {
+              return NoInternet(
+                onRetry: () => Provider.of<RestaurantProvider>(
+                  context,
+                  listen: false,
+                ).retry(),
+              );
             }
             return Container();
           },

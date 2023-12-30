@@ -8,6 +8,7 @@ import '../../providers/search_restaurant_provider.dart';
 import '../../utils/responsive.dart';
 import '../../component_widgets/custom_sliver_appbar.dart';
 import '../widgets/empty_item.dart';
+import '../widgets/no_internet.dart';
 import '../widgets/restaurant_sliver_list.dart';
 import 'widgets/search_animation.dart';
 
@@ -62,8 +63,10 @@ class SearchScreen extends StatelessWidget {
                     );
                   } else if (provider.state == SearchResultState.noData) {
                     return const EmptyItem(itemName: 'restaurants',);
+                  } else if (provider.state == SearchResultState.noInternet) {
+                    return _noInternetAlert(context);
                   }
-                  return const SliverToBoxAdapter();
+                  return const EmptyItem(itemName: 'restaurants',);
                 },
               ),
             ],
@@ -87,4 +90,18 @@ class SearchScreen extends StatelessWidget {
         ),
         isCenter: true,
       );
+
+  SliverToBoxAdapter _noInternetAlert(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 52),
+        child: NoInternet(
+          onRetry: () => Provider.of<SearchRestaurantProvider>(
+            context,
+            listen: false,
+          ).retrySearch(),
+        ),
+      ),
+    );
+  }
 }

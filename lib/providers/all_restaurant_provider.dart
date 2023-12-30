@@ -21,6 +21,8 @@ class AllRestaurantProvider extends ChangeNotifier {
   AllRestaurantResult get result => _allRestaurantResult;
   ResultState get state => _state;
 
+  void retry() => _fetchAllArticle();
+
   Future<dynamic> _fetchAllArticle() async {
     try {
       _state = ResultState.loading;
@@ -37,6 +39,7 @@ class AllRestaurantProvider extends ChangeNotifier {
       }
     } on SocketException catch (_) {
       _state = ResultState.noInternet;
+      notifyListeners();
     } catch (e) {
       _state = ResultState.error;
       notifyListeners();
