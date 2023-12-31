@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'sliver_pinned_header.dart';
 
 class PinnedSearchBar extends StatelessWidget {
-  PinnedSearchBar({super.key, required this.onChanged, required this.width});
+  const PinnedSearchBar({super.key, required this.onChanged, required this.width});
 
   final double width;
-  Function(String) onChanged;
+  final Function(String) onChanged;
 
   @override
   Widget build(BuildContext context) {

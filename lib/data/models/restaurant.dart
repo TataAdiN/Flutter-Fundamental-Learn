@@ -55,13 +55,19 @@ class Restaurant {
         rating: json["rating"]?.toDouble(),
         categories: (json["categories"] != null)
             ? List<RestaurantCategory>.from(
-                json["categories"].map((x) => RestaurantCategory.fromJson(x)))
+                json["categories"].map(
+                  (category) => RestaurantCategory.fromJson(category),
+                ),
+              )
             : null,
         menus:
             (json["categories"] != null) ? Menus.fromJson(json["menus"]) : null,
         customerReviews: (json["categories"] != null)
             ? List<CustomerReview>.from(
-                json["customerReviews"].map((x) => CustomerReview.fromJson(x)))
+                json["customerReviews"].map(
+                  (review) => CustomerReview.fromJson(review),
+                ),
+              )
             : null,
       );
 
@@ -72,9 +78,16 @@ class Restaurant {
         "pictureId": pictureId,
         "city": city,
         "rating": rating,
-        "categories": List<dynamic>.from(categories!.map((x) => x.toJson())),
+        "categories": List<dynamic>.from(
+          categories!.map(
+            (category) => category.toJson(),
+          ),
+        ),
         "menus": menus?.toJson(),
-        "customerReviews":
-            List<dynamic>.from(customerReviews!.map((x) => x.toJson())),
+        "customerReviews": List<dynamic>.from(
+          customerReviews!.map(
+            (review) => review.toJson(),
+          ),
+        ),
       };
 }

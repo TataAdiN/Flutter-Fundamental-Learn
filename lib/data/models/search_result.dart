@@ -23,14 +23,22 @@ class SearchResult {
       );
 
   factory SearchResult.fromJson(Map<String, dynamic> json) => SearchResult(
-    error: json["error"],
-    founded: json["founded"],
-    restaurants: List<Restaurant>.from(json["restaurants"].map((x) => Restaurant.fromJson(x))),
-  );
+        error: json["error"],
+        founded: json["founded"],
+        restaurants: List<Restaurant>.from(
+          json["restaurants"].map(
+            (restaurant) => Restaurant.fromJson(restaurant),
+          ),
+        ),
+      );
 
   Map<String, dynamic> toJson() => {
-    "error": error,
-    "founded": founded,
-    "restaurants": List<dynamic>.from(restaurants.map((x) => x.toJson())),
-  };
+        "error": error,
+        "founded": founded,
+        "restaurants": List<dynamic>.from(
+          restaurants.map(
+            (restaurant) => restaurant.toJson(),
+          ),
+        ),
+      };
 }
