@@ -19,7 +19,7 @@ class ReviewCommentBox extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       child: Container(
         width: double.infinity,
-        height: 120,
+        height: 124,
         decoration: const BoxDecoration(
           color: Colors.white,
           border: Border(
