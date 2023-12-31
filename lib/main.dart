@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'data/models/customer_review.dart';
 import 'data/models/restaurant.dart';
 import 'screens/main_page/main_page.dart';
 import 'screens/restaurant_page/restaurant_page.dart';
