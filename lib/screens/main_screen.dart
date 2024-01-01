@@ -1,25 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class MainScreen extends StatefulWidget {
+class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
-
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: const Text('State Management'),
+        title: const Text('Local Storage'),
       ),
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: const SystemUiOverlayStyle(
@@ -41,9 +31,9 @@ class _MainScreenState extends State<MainScreen> {
               thickness: 0,
             ),
             ListTile(
-              onTap: () => Navigator.pushNamed(context, '/alarm'),
+              onTap: () => Navigator.pushNamed(context, '/counter'),
               tileColor: Colors.white,
-              title: const Text('Alarm'),
+              title: const Text('Counter'),
             ),
             const Divider(
               thickness: 0,
