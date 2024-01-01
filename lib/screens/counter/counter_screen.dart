@@ -1,23 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'services/background_service.dart';
-
-class AlarmScreen extends StatefulWidget {
-  const AlarmScreen({super.key});
+class CounterScreen extends StatefulWidget {
+  const CounterScreen({super.key});
 
   @override
-  State<AlarmScreen> createState() => _AlarmScreenState();
+  State<CounterScreen> createState() => _CounterScreenState();
 }
 
-class _AlarmScreenState extends State<AlarmScreen> {
-  final BackgroundService _service = BackgroundService();
+class _CounterScreenState extends State<CounterScreen> {
+  int _count = 0;
+  static const String counterNumberPrefs = 'counterNumber';
+  late SharedPreferences _prefs;
 
   @override
   void initState() {
     super.initState();
-    port.listen((_) async => await _service.someTask());
+    _initSharedPref();
+  }
+
+  Future<void> _initSharedPref() async {
+    _prefs = await SharedPreferences.getInstance();
+    _loadNumber();
+  }
+
+  void _saveNumber() {
+    _prefs.setInt(counterNumberPrefs, _count);
+  }
+
+  void _incrementCounter() {
+    setState(() {
+      _count++;
+      _saveNumber();
+    });
+  }
+
+  void _loadNumber() async {
+    setState(() {
+      _count = _prefs.getInt(counterNumberPrefs) ?? 0;
+    });
+  }
+
+  void _resetNumber() {
+    _prefs.remove(counterNumberPrefs);
+    _loadNumber();
   }
 
   @override
@@ -25,7 +52,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: const Text('Alarm'),
+        title: const Text('Counter'),
       ),
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: const SystemUiOverlayStyle(
@@ -37,75 +64,25 @@ class _AlarmScreenState extends State<AlarmScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepOrangeAccent
-                ),
-                child: const Text(
-                  'Alarm with Delayed (Once)',
-                ),
-                onPressed: () async {
-                  await AndroidAlarmManager.oneShot(
-                    const Duration(seconds: 5),
-                    1,
-                    BackgroundService.callback,
-                    exact: true,
-                    wakeup: true,
-                  );
-                },
+              const Text('Counter :'),
+              Text(
+                '$_count',
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
-              const SizedBox(height: 20),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepOrangeAccent
-                ),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),
                 child: const Text(
-                  'Alarm with Date Time (Once)',
+                  'Reset',
                 ),
-                onPressed: () async {
-                  await AndroidAlarmManager.oneShotAt(
-                    DateTime.now().add(const Duration(seconds: 5)),
-                    2,
-                    BackgroundService.callback,
-                    exact: true,
-                    wakeup: true,
-                  );
-                },
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.deepOrangeAccent
-                ),
-                child: const Text(
-                  'Alarm with Periodic',
-                ),
-                onPressed: () async {
-                  await AndroidAlarmManager.periodic(
-                    const Duration(minutes: 1),
-                    3,
-                    BackgroundService.callback,
-                    startAt: DateTime.now(),
-                    exact: true,
-                    wakeup: true,
-                  );
-                },
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepOrangeAccent
-                ),
-                child: const Text(
-                  'Cancel Alarm by Id',
-                ),
-                onPressed: () async {
-                  await AndroidAlarmManager.cancel(3);
-                },
+                onPressed: () => _resetNumber(),
               ),
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () => _incrementCounter(),
       ),
     );
   }
