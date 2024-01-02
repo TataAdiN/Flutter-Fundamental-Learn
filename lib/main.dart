@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'screens/counter/counter_screen.dart';
 import 'screens/main_screen.dart';
-import 'screens/notification/detail_notification_screen.dart';
-import 'screens/notification/notification_screen.dart';
+import 'screens/notes/notes_page.dart';
+import 'screens/notes/notes_update_screen.dart';
 
 Future<void> main() async {
   runApp(const MyApp());
@@ -27,8 +27,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const MainScreen(),
-        '/notification': (context) => const NotificationScreen(),
-        '/notification.detail': (context) => const DetailNotificationScreen(),
+        '/notes': (context) => const NotesPage(),
+        '/notes.update_or_create': (context) => const NotesUpdateScreen(),
         '/counter': (context) => const CounterScreen(),
       },
     );
