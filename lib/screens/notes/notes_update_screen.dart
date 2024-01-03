@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'models/note.dart';
+import 'providers/notes_provider.dart';
 import 'widgets/custom_button.dart';
 
 class NotesUpdateScreen extends StatefulWidget {
@@ -44,17 +46,35 @@ class _NotesUpdateScreenState extends State<NotesUpdateScreen> {
                 labelText: 'Judul',
               ),
             ),
+            const SizedBox(height: 10,),
             TextField(
               controller: _descriptionController,
               decoration: const InputDecoration(
                 labelText: 'Deskripsi',
               ),
             ),
+            const SizedBox(height: 20,),
             SizedBox(
               width: double.infinity,
               child: CustomButton(
                 onPressed: () async {
-                  // TODO : Tambahkan kode untuk menyimpan atau mengedit note
+                  if (!_isUpdate) {
+                    final note = Note(
+                      title: _titleController.text,
+                      description: _descriptionController.text,
+                    );
+                    Provider.of<NotesProvider>(context, listen: false)
+                        .addNote(note);
+                  } else {
+                    final note = Note(
+                      id: widget.note!.id,
+                      title: _titleController.text,
+                      description: _descriptionController.text,
+                    );
+                    Provider.of<NotesProvider>(context, listen: false)
+                        .updateNote(note);
+                  }
+                  Navigator.pop(context);
                 },
                 text: 'Simpan',
               ),

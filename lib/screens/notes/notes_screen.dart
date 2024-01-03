@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'notes_update_screen.dart';
 import 'providers/notes_provider.dart';
 
 class NotesScreen extends StatelessWidget {
@@ -26,14 +27,24 @@ class NotesScreen extends StatelessWidget {
                 ),
                 background: Container(color: Colors.red),
                 onDismissed: (direction) {
-                  // TODO : Kode untuk menghapus note
+                  provider.deleteNote(note.id!);
                 },
                 child: Card(
                   child: ListTile(
                     title: Text(note.title),
                     subtitle: Text(note.description),
                     onTap: () async {
-                      // TODO : Kode untuk mendapatkan note yang dipilih dan dikirimkan ke NoteAddUpdatePage
+                      final navigator =  Navigator.of(context);
+                      final selectedNote = await provider.getNoteById(note.id!);
+                      navigator.push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return NotesUpdateScreen(
+                              note: selectedNote,
+                            );
+                          },
+                        ),
+                      );
                     },
                   ),
                 ),
@@ -45,7 +56,14 @@ class NotesScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          Navigator.pushNamed(context, '/notes.update_or_create');
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) {
+                return const NotesUpdateScreen(
+                );
+              },
+            ),
+          );
         },
       ),
     );

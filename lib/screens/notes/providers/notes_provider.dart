@@ -4,11 +4,10 @@ import '../helpers/database_helper.dart';
 import '../models/note.dart';
 
 class NotesProvider extends ChangeNotifier {
-  late DatabaseHelper _dbHelper;
+  final DatabaseHelper _dbHelper = DatabaseHelper();
   List<Note> _notes = [];
 
   NotesProvider() {
-    _dbHelper = DatabaseHelper();
     _getAllNotes();
   }
 

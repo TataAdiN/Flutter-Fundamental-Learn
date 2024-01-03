@@ -11,7 +11,14 @@ class NotesPage extends StatelessWidget{
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => NotesProvider(),
-      child: const NotesScreen(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: const NotesScreen(),
+      ),
     );
   }
 
