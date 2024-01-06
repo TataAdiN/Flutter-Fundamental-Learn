@@ -43,6 +43,14 @@ class MainScreen extends StatelessWidget {
               tileColor: Colors.white,
               title: const Text('Note Pad'),
             ),
+            const Divider(
+              thickness: 0,
+            ),
+            ListTile(
+              onTap: () => Navigator.pushNamed(context, '/news_app'),
+              tileColor: Colors.white,
+              title: const Text('News App'),
+            ),
           ],
         ),
       ),
