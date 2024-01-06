@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'screens/counter/counter_screen.dart';
 import 'screens/main_screen.dart';
+import 'screens/note_pad/note_pad_page.dart';
 import 'screens/notes/notes_page.dart';
 import 'screens/notes/notes_update_screen.dart';
 
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/notes': (context) => const NotesPage(),
         '/notes.update_or_create': (context) => const NotesUpdateScreen(),
         '/counter': (context) => const CounterScreen(),
+        '/note_pad': (context) => const NotePadPage(),
       },
     );
   }
