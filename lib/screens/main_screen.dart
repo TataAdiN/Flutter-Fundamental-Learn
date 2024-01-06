@@ -39,9 +39,9 @@ class MainScreen extends StatelessWidget {
               thickness: 0,
             ),
             ListTile(
-              onTap: () => Navigator.pushNamed(context, '/news_app'),
+              onTap: () => Navigator.pushNamed(context, '/note_pad'),
               tileColor: Colors.white,
-              title: const Text('New App Notification'),
+              title: const Text('Note Pad'),
             ),
           ],
         ),
