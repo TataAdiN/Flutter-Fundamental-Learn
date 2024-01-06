@@ -10,4 +10,9 @@ class DoneModuleProvider extends ChangeNotifier
     _doneModuleList.add(moduleName);
     notifyListeners();
   }
+
+  void remove(String moduleName) {
+    _doneModuleList.remove(moduleName);
+    notifyListeners();
+  }
 }
