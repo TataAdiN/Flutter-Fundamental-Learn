@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fundamental/screens/news_app/providers/bookmark_provider.dart';
 import 'package:flutter_fundamental/screens/news_app/screens/article_web_view.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data/api_service.dart';
 import 'data/models/article.dart';
+import 'helpers/database_helper.dart';
 import 'helpers/preferences_helper.dart';
 import 'providers/news_provider.dart';
 import 'providers/preferences_provider.dart';
@@ -22,6 +24,11 @@ class NewsAppPage extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => NewsProvider(
             apiService: ApiService(),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => BookmarkProvider(
+            databaseHelper: DatabaseHelper(),
           ),
         ),
         ChangeNotifierProvider(

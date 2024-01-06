@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'article_list_screen.dart';
+import 'bookmark_screen.dart';
 import 'settings_screen.dart';
 
 class NewsAppScreen extends StatefulWidget {
@@ -15,7 +16,7 @@ class _NewsAppScreenState extends State<NewsAppScreen> {
 
   final List<Widget> _listWidget = [
     const ArticleListScreen(),
-    const SettingsScreen(),
+    const BookmarkScreen(),
     const SettingsScreen(),
   ];
 

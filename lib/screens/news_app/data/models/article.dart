@@ -1,7 +1,4 @@
-import 'source.dart';
-
 class Article {
-  Source source;
   dynamic author;
   String title;
   dynamic description;
@@ -11,7 +8,6 @@ class Article {
   dynamic content;
 
   Article({
-    required this.source,
     required this.author,
     required this.title,
     required this.description,
@@ -22,7 +18,6 @@ class Article {
   });
 
   Article copyWith({
-    Source? source,
     String? author,
     String? title,
     dynamic description,
@@ -32,7 +27,6 @@ class Article {
     dynamic content,
   }) =>
       Article(
-        source: source ?? this.source,
         author: author ?? this.author,
         title: title ?? this.title,
         description: description ?? this.description,
@@ -43,7 +37,6 @@ class Article {
       );
 
   factory Article.fromJson(Map<String, dynamic> json) => Article(
-    source: Source.fromJson(json["source"]),
     author: json["author"],
     title: json["title"],
     description: json["description"],
@@ -54,11 +47,10 @@ class Article {
   );
 
   Map<String, dynamic> toJson() => {
-    "source": source.toJson(),
+    "url": url,
     "author": author,
     "title": title,
     "description": description,
-    "url": url,
     "urlToImage": urlToImage,
     "publishedAt": publishedAt.toIso8601String(),
     "content": content,
