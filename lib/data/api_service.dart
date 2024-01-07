@@ -37,8 +37,10 @@ class ApiService {
     );
     if (response.statusCode == 200) {
       return RestaurantResult.fromJson(json.decode(response.body));
+    } else if (response.statusCode == 404) {
+      return RestaurantResult.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to get restaurant with id: $restaurantId');
+      throw Exception('Failed to get restaurant with id: $response.statusCode');
     }
   }
 
