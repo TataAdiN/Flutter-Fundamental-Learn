@@ -79,7 +79,7 @@ class SearchScreen extends StatelessWidget {
   Widget _appBar(BuildContext context, double screenHeight) =>
       CustomSliverAppBar(
         isPinned: false,
-        showBackNav: true,
+        showBackNav: false,
         maxHeight: Responsive.adjust(
           screenSize: screenHeight,
           percentage: 16,
