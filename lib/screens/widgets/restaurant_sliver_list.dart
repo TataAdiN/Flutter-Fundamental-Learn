@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../../data/models/restaurant.dart';
 import '../../utils/responsive.dart';
-import '../main_page/widgets/restaurant_card.dart';
+import '../all_restaurant/widgets/restaurant_card.dart';
 
 class RestaurantSliverList extends StatelessWidget {
   const RestaurantSliverList({
