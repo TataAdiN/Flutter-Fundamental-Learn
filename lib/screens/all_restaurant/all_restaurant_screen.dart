@@ -12,8 +12,8 @@ import '../widgets/no_internet.dart';
 import '../widgets/restaurant_sliver_list.dart';
 import '../../component_widgets/custom_sliver_appbar.dart';
 
-class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+class AllRestaurantScreen extends StatelessWidget {
+  const AllRestaurantScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
