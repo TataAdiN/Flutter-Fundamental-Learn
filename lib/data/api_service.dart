@@ -7,6 +7,14 @@ import 'models/restaurant_result.dart';
 import 'models/search_result.dart';
 
 class ApiService {
+  static final ApiService _instance = ApiService._internal();
+
+  factory ApiService() {
+    return _instance;
+  }
+
+  ApiService._internal();
+
   static const String _baseUrl = 'https://restaurant-api.dicoding.dev';
 
   static String imageUrl(String imageId) {
