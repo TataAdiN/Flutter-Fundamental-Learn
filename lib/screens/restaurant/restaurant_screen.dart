@@ -101,12 +101,18 @@ class RestaurantScreen extends StatelessWidget {
             ),
           ),
           RestaurantContent(restaurant: restaurant),
-          const PinnedMenuHeading(headingTitle: "Foods"),
+          const PinnedMenuHeading(
+            headingTitle: "Foods",
+            icon: Icons.restaurant_sharp,
+          ),
           RestaurantMenuSection(
             menus: restaurant.menus!.foods,
             icon: Icons.restaurant_sharp,
           ),
-          const PinnedMenuHeading(headingTitle: "Drinks"),
+          const PinnedMenuHeading(
+            headingTitle: "Drinks",
+            icon: Icons.coffee_outlined,
+          ),
           RestaurantMenuSection(
             menus: restaurant.menus!.drinks,
             icon: Icons.coffee_outlined,

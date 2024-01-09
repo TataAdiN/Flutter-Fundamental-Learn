@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fundamental/screens/restaurant_page/restaurant_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/api_service.dart';
 import '../../providers/restaurant_provider.dart';
+import 'restaurant_screen.dart';
 
 class RestaurantPage extends StatelessWidget {
   const RestaurantPage({super.key, required this.restaurantId});

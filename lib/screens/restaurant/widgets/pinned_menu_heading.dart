@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../component_widgets/sliver_pinned_header.dart';
 
 class PinnedMenuHeading extends StatelessWidget {
-  const PinnedMenuHeading({super.key, required this.headingTitle});
+  const PinnedMenuHeading({super.key, required this.headingTitle, required this.icon});
 
   final String headingTitle;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class PinnedMenuHeading extends StatelessWidget {
             child: Row(
               children: [
                 const SizedBox(width: 8),
-                const Icon(Icons.restaurant_sharp, size: 24),
+                Icon(icon, size: 24),
                 const SizedBox(width: 8),
                 Text(
                   headingTitle,

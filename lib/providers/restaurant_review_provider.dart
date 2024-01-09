@@ -7,7 +7,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import '../data/api_service.dart';
 import '../data/enums/restaurant_review_state.dart';
 import '../data/models/customer_review.dart';
-import '../screens/restaurant_page/restaurant_review/widgets/validation_failed_alert.dart';
+import '../screens/restaurant/restaurant_review/widgets/validation_failed_alert.dart';
 
 class RestaurantReviewProvider extends ChangeNotifier {
   late List<CustomerReview> _customerReviews;
