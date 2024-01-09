@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/enums/result_state.dart';
@@ -107,17 +106,5 @@ class AllRestaurantScreen extends StatelessWidget {
             ),
           ],
         ),
-        actions: [
-          InkWell(
-            onTap: () => Navigator.pushNamed(context, '/search'),
-            child: const Padding(
-              padding: EdgeInsets.only(right: 40, top: 5),
-              child: Icon(
-                LineIcons.search,
-                size: 32,
-              ),
-            ),
-          )
-        ],
       );
 }
