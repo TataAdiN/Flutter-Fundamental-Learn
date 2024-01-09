@@ -70,6 +70,7 @@ class RestaurantScreen extends StatelessWidget {
             ),
             imgUrl: ApiService.imageUrl(restaurant.pictureId),
             title: restaurant.name,
+            icon: const Icon(Icons.favorite, color: Colors.deepOrangeAccent),
           ),
         ];
       },
