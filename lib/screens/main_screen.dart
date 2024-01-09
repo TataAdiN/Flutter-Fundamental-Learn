@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../data/api_service.dart';
-import '../providers/all_restaurant_provider.dart';
-import '../providers/search_restaurant_provider.dart';
 import 'all_restaurant/all_restaurant_screen.dart';
 import 'bookmarks/bookmarks_screen.dart';
-import 'search_page/search_screen.dart';
-import 'settings_page/settings_screen.dart';
+import 'search/search_screen.dart';
+import 'settings/settings_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -20,18 +16,8 @@ class _MainScreenState extends State<MainScreen> {
   int _bottomNavIndex = 0;
 
   final List<Widget> _listWidget = [
-    ChangeNotifierProvider<AllRestaurantProvider>(
-      create: (_) => AllRestaurantProvider(
-        apiService: ApiService(),
-      ),
-      child: const AllRestaurantScreen(),
-    ),
-    ChangeNotifierProvider<SearchRestaurantProvider>(
-      create: (_) => SearchRestaurantProvider(
-        apiService: ApiService(),
-      ),
-      child: const SearchScreen(),
-    ),
+    const AllRestaurantScreen(),
+    const SearchScreen(),
     const BookmarksScreen(),
     const SettingsScreen(),
   ];
