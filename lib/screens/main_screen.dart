@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'all_restaurant/all_restaurant_screen.dart';
-import 'bookmarks/bookmarks_screen.dart';
+import 'favorites/favorites_screen.dart';
 import 'search/search_screen.dart';
 import 'settings/settings_screen.dart';
 
@@ -18,7 +18,7 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> _listWidget = [
     const AllRestaurantScreen(),
     const SearchScreen(),
-    const BookmarksScreen(),
+    const FavoriteScreen(),
     const SettingsScreen(),
   ];
 
@@ -32,8 +32,8 @@ class _MainScreenState extends State<MainScreen> {
       label: 'Search',
     ),
     const BottomNavigationBarItem(
-      icon: Icon(Icons.collections_bookmark),
-      label: 'Bookmark',
+      icon: Icon(Icons.favorite_sharp),
+      label: 'Favorites',
     ),
     const BottomNavigationBarItem(
       icon: Icon(Icons.settings),
