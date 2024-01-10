@@ -40,7 +40,7 @@ class RestaurantScreen extends StatelessWidget {
               return const RestaurantNotFound();
             } else if (provider.state == RestaurantResultState.exist) {
               Restaurant? restaurant = provider.result.restaurant;
-              return _buildRestaurant(restaurant!, screenHeight);
+              return _buildRestaurant(context, restaurant!, screenHeight);
             } else if (provider.state == RestaurantResultState.noInternet) {
               return NoInternet(
                 onRetry: () => Provider.of<RestaurantProvider>(
@@ -57,6 +57,7 @@ class RestaurantScreen extends StatelessWidget {
   }
 
   NestedScrollView _buildRestaurant(
+      BuildContext context,
     Restaurant restaurant,
     double screenHeight,
   ) {
@@ -78,7 +79,7 @@ class RestaurantScreen extends StatelessWidget {
         slivers: [
           SliverPinnedHeader(
             widget: Container(
-              color: Colors.white,
+              color: Theme.of(context).scaffoldBackgroundColor,
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Align(
