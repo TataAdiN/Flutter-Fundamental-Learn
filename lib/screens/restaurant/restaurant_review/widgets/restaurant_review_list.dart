@@ -23,7 +23,7 @@ class RestaurantReviewList extends StatelessWidget {
           int index,
           ) {
         return Card(
-          color: Colors.white,
+          color: Theme.of(context).cardColor,
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(

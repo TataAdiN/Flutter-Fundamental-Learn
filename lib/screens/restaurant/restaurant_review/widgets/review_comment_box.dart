@@ -20,9 +20,9 @@ class ReviewCommentBox extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: 124,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          border: Border(
+        decoration: BoxDecoration(
+          color: Theme.of(context).cardColor,
+          border: const Border(
             top: BorderSide(
               color: Colors.deepOrangeAccent,
             ),
