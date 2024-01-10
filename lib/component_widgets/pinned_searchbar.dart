@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import 'sliver_pinned_header.dart';
 
@@ -13,25 +14,31 @@ class PinnedSearchBar extends StatelessWidget {
     return SliverPinnedHeader(
       minHeight: 72,
       maxHeight: 72,
-      widget: Padding(
-        padding: const EdgeInsets.only(top: 20),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(left: 10, right: 10),
-                  width: width,
-                  child: Align(
-                    child: CupertinoSearchTextField(
-                      placeholder: 'Type restaurant name here...',
-                      onChanged: onChanged,
+      widget: Container(
+        color: Theme.of(context).primaryColor,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 20),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    width: width,
+                    child: Align(
+                      child: CupertinoSearchTextField(
+                        style: TextStyle(
+                          color: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white
+                        ),
+                        placeholder: 'Type restaurant name here...',
+                        onChanged: onChanged,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
