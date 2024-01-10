@@ -20,12 +20,17 @@ class AllRestaurantScreen extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: (Theme.of(context).brightness == Brightness.light)
+          ? Colors.grey[200]
+          : Theme.of(context).primaryColorDark,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: const SystemUiOverlayStyle(
-          statusBarColor: Colors.white,
-          statusBarBrightness: Brightness.light,
-          statusBarIconBrightness: Brightness.dark,
+        value: SystemUiOverlayStyle(
+          statusBarColor: Theme.of(context).primaryColor,
+          statusBarBrightness: Theme.of(context).brightness,
+          statusBarIconBrightness:
+              (Theme.of(context).brightness == Brightness.light)
+                  ? Brightness.dark
+                  : Brightness.light,
         ),
         child: SafeArea(
           child: CustomScrollView(
