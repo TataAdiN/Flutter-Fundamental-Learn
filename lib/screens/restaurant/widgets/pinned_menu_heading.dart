@@ -12,7 +12,7 @@ class PinnedMenuHeading extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverPinnedHeader(
       widget: Container(
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
         child: Align(
           child: Padding(
             padding: const EdgeInsets.all(5),
@@ -24,7 +24,6 @@ class PinnedMenuHeading extends StatelessWidget {
                 Text(
                   headingTitle,
                   style: const TextStyle(
-                    color: Colors.black54,
                     fontSize: 16,
                   ),
                 ),
