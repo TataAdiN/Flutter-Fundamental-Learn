@@ -24,13 +24,11 @@ class NoInternet extends StatelessWidget {
             const Text(
               'No internet detected',
               style: TextStyle(
-                color: Colors.black54,
                 fontWeight: FontWeight.bold,
               ),
             ),
             const Text(
               'Please ensure your network has internet access',
-              style: TextStyle(color: Colors.black54),
             ),
             const SizedBox(
               height: 24,
