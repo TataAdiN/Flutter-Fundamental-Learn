@@ -20,7 +20,6 @@ class SliverPinnedHeader extends StatelessWidget {
         minHeight: minHeight,
         maxHeight: maxHeight,
         child: Container(
-          color: Colors.white,
           child: widget,
         ),
       ),
