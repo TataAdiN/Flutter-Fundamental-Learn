@@ -25,7 +25,7 @@ class CustomSliverAppBar extends StatelessWidget {
       floating: false,
       expandedHeight: maxHeight,
       elevation: 0,
-      surfaceTintColor: Colors.white,
+      surfaceTintColor: Theme.of(context).primaryColor,
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: isCenter,
         titlePadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
@@ -45,7 +45,7 @@ class CustomSliverAppBar extends StatelessWidget {
         ),
       ) : null,
       automaticallyImplyLeading: showBackNav,
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).primaryColor,
       actions: actions,
     );
   }
