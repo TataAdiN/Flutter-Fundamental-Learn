@@ -22,7 +22,7 @@ class RestaurantCard extends StatelessWidget {
     return InkWell(
       onTap: () => onTap(),
       child: Card(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Row(
