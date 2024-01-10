@@ -12,10 +12,10 @@ class MenuPlaceHolder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        decoration: const BoxDecoration(
-          color: Colors.grey,
+        decoration: BoxDecoration(
+          color: Theme.of(context).brightness == Brightness.light ? Colors.grey : Colors.black26,
           shape: BoxShape.rectangle,
-          borderRadius: BorderRadius.all(
+          borderRadius: const BorderRadius.all(
             Radius.circular(10),
           ),
         ),
