@@ -37,8 +37,8 @@ class AllRestaurantScreen extends StatelessWidget {
             slivers: [
               _appBar(context, screenHeight),
               Consumer<AllRestaurantProvider>(
-                builder: (context, state, _) {
-                  if (state.state == ResultState.loading) {
+                builder: (context, provider, _) {
+                  if (provider.state == ResultState.loading) {
                     return SliverToBoxAdapter(
                       child: FoodLoading(
                         paddingTop: Responsive.adjust(
@@ -47,22 +47,24 @@ class AllRestaurantScreen extends StatelessWidget {
                         ),
                       ),
                     );
-                  } else if (state.state == ResultState.hasData) {
+                  } else if (provider.state == ResultState.hasData) {
                     return RestaurantSliverList(
-                      restaurants: state.result.restaurants,
+                      restaurants: provider.result.restaurants,
                       screenWidth: screenWidth,
                     );
-                  } else if (state.state == ResultState.noData) {
-                    return const EmptyItem(
-                      itemName: 'restaurants',
-                    );
-                  } else if (state.state == ResultState.error) {
-                    return SliverToBoxAdapter(
-                      child: Center(
-                        child: Text(state.message),
+                  } else if (provider.state == ResultState.noData) {
+                    return const SliverToBoxAdapter(
+                      child: EmptyItem(
+                        itemName: 'restaurants',
                       ),
                     );
-                  } else if (state.state == ResultState.noInternet) {
+                  } else if (provider.state == ResultState.error) {
+                    return SliverToBoxAdapter(
+                      child: Center(
+                        child: Text(provider.message),
+                      ),
+                    );
+                  } else if (provider.state == ResultState.noInternet) {
                     return _noInternetAlert(context);
                   }
                   return const SliverToBoxAdapter();
