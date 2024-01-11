@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fundamental/providers/preferences_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data/api_service.dart';
 import 'data/models/restaurant.dart';
+import 'data/sqlite_service.dart';
 import 'helpers/shared_preferences.dart';
 import 'providers/all_restaurant_provider.dart';
+import 'providers/favorite_provider.dart';
+import 'providers/preferences_provider.dart';
 import 'providers/search_restaurant_provider.dart';
 import 'screens/main_screen.dart';
 import 'screens/restaurant/restaurant_page.dart';
@@ -31,6 +33,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<SearchRestaurantProvider>(
           create: (_) => SearchRestaurantProvider(
             apiService: ApiService(),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => FavoriteProvider(
+            service: SqliteService(),
           ),
         ),
         ChangeNotifierProvider<PreferencesProvider>(
