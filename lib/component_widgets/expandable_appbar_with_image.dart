@@ -7,12 +7,12 @@ class ExpandableAppbarWithImage extends StatelessWidget {
     super.key,
     required this.maxHeight,
     required this.imgUrl,
-    required this.title, required this.icon,
+    required this.title, required this.favoriteIcon,
   });
 
   final double maxHeight;
   final String imgUrl, title;
-  final Widget icon;
+  final Widget favoriteIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -50,16 +50,7 @@ class ExpandableAppbarWithImage extends StatelessWidget {
         ),
       ),
       actions: [
-        ElevatedButton(
-          onPressed: () => Navigator.pop(context),
-          style: ElevatedButton.styleFrom(
-            shape: const CircleBorder(),
-            padding: EdgeInsets.zero,
-            backgroundColor: Colors.white70,
-            foregroundColor: Colors.white70,
-          ),
-          child: icon,
-        )
+        favoriteIcon
       ],
     );
   }
