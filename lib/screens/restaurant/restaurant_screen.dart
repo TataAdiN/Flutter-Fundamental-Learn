@@ -6,6 +6,7 @@ import '../../component_widgets/sliver_pinned_header.dart';
 import '../../data/api_service.dart';
 import '../../data/enums/restaurant_result_state.dart';
 import '../../data/models/restaurant.dart';
+import '../../providers/favorite_provider.dart';
 import '../../providers/restaurant_provider.dart';
 import '../../utils/responsive.dart';
 import '../widgets/food_loading.dart';
@@ -57,7 +58,7 @@ class RestaurantScreen extends StatelessWidget {
   }
 
   NestedScrollView _buildRestaurant(
-      BuildContext context,
+    BuildContext context,
     Restaurant restaurant,
     double screenHeight,
   ) {
@@ -71,7 +72,36 @@ class RestaurantScreen extends StatelessWidget {
             ),
             imgUrl: ApiService.imageUrl(restaurant.pictureId),
             title: restaurant.name,
-            icon: const Icon(Icons.favorite, color: Colors.deepOrangeAccent),
+            favoriteIcon: Consumer<FavoriteProvider>(
+              builder: (context, provider, child) {
+                return FutureBuilder<bool>(
+                  future: provider.isFavorite(restaurant.id),
+                  builder: (context, snapshot) {
+                    var isFavorite = snapshot.data ?? false;
+                    return ElevatedButton(
+                      onPressed: (){
+                        if(isFavorite){
+                          provider.removeFavorite(restaurant.id);
+                        }else{
+                          provider.addFavorite(restaurant);
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: const CircleBorder(),
+                        padding: EdgeInsets.zero,
+                        backgroundColor: Colors.white70,
+                        foregroundColor: Colors.white70,
+                      ),
+                      child: Icon(
+                        Icons.favorite,
+                        color:
+                            isFavorite ? Colors.deepOrangeAccent : Colors.grey,
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
           ),
         ];
       },
