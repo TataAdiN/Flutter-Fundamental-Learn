@@ -7,8 +7,7 @@ class EmptyItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: Padding(
+    return Padding(
         padding: const EdgeInsets.only(top: 52),
         child: Center(
           child: Column(
@@ -24,7 +23,6 @@ class EmptyItem extends StatelessWidget {
             ],
           ),
         ),
-      ),
     );
   }
 }
