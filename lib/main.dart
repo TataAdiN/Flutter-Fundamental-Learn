@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'data/api_service.dart';
 import 'data/models/restaurant.dart';
 import 'data/sqlite_service.dart';
-import 'helpers/shared_preferences.dart';
+import 'helpers/preferences_helper.dart';
 import 'providers/all_restaurant_provider.dart';
 import 'providers/favorite_provider.dart';
 import 'providers/preferences_provider.dart';

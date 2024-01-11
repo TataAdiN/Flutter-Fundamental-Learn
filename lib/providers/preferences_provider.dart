@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/shared_preferences.dart';
+import '../helpers/preferences_helper.dart';
 import '../themes/styles.dart';
 
 class PreferencesProvider extends ChangeNotifier {
