@@ -67,11 +67,11 @@ class SearchScreen extends StatelessWidget {
                       screenWidth: screenWidth,
                     );
                   } else if (provider.state == SearchResultState.noData) {
-                    return const EmptyItem(itemName: 'restaurants',);
+                    return const SliverToBoxAdapter(child: EmptyItem(itemName: 'restaurants',));
                   } else if (provider.state == SearchResultState.noInternet) {
                     return _noInternetAlert(context);
                   }
-                  return const EmptyItem(itemName: 'restaurants',);
+                  return const SliverToBoxAdapter(child: EmptyItem(itemName: 'restaurants',));
                 },
               ),
             ],
