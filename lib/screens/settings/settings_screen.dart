@@ -9,36 +9,35 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: (Theme.of(context).brightness == Brightness.light)
+          ? Colors.grey[200]
+          : Theme.of(context).primaryColorDark,
       appBar: AppBar(
         title: const Text('Settings'),
       ),
       body: ListView(
         children: [
-          Material(
-            child: ListTile(
-              title: const Text('Dark Theme'),
-              trailing: Consumer<PreferencesProvider>(
-                builder: (context, provider, _) {
-                  return Switch.adaptive(
-                    activeColor: Colors.orange,
-                    value: provider.isDarkTheme,
-                    onChanged: (value) =>
-                        Provider.of<PreferencesProvider>(context, listen: false)
-                            .enableDarkTheme(!provider.isDarkTheme),
-                  );
-                },
-              ),
+          ListTile(
+            title: const Text('Dark Theme'),
+            trailing: Consumer<PreferencesProvider>(
+              builder: (context, provider, _) {
+                return Switch.adaptive(
+                  activeColor: Colors.orange,
+                  value: provider.isDarkTheme,
+                  onChanged: (value) =>
+                      Provider.of<PreferencesProvider>(context, listen: false)
+                          .enableDarkTheme(!provider.isDarkTheme),
+                );
+              },
             ),
           ),
-          Material(
-            child: ListTile(
-              title: const Text('Scheduling Notifications'),
-              trailing: Switch.adaptive(
-                value: false,
-                onChanged: (value) {},
-              ),
+          ListTile(
+            title: const Text('Scheduling Notifications'),
+            trailing: Switch.adaptive(
+              value: false,
+              onChanged: (value) {},
             ),
-          )
+          ),
         ],
       ),
     );
