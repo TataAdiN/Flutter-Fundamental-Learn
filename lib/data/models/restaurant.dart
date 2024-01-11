@@ -8,7 +8,7 @@ class Restaurant {
   String description;
   String pictureId;
   String city;
-  double rating;
+  dynamic rating;
   List<RestaurantCategory>? categories;
   Menus? menus;
   List<CustomerReview>? customerReviews;
@@ -52,7 +52,7 @@ class Restaurant {
         description: json["description"],
         pictureId: json["pictureId"],
         city: json["city"],
-        rating: json["rating"]?.toDouble(),
+        rating: json['rating'] is String ? double.tryParse(json['rating']??'0.0') ?? 0.0 : json['rating'],
         categories: (json["categories"] != null)
             ? List<RestaurantCategory>.from(
                 json["categories"].map(
@@ -78,16 +78,5 @@ class Restaurant {
         "pictureId": pictureId,
         "city": city,
         "rating": rating,
-        "categories": List<dynamic>.from(
-          categories!.map(
-            (category) => category.toJson(),
-          ),
-        ),
-        "menus": menus?.toJson(),
-        "customerReviews": List<dynamic>.from(
-          customerReviews!.map(
-            (review) => review.toJson(),
-          ),
-        ),
       };
 }
