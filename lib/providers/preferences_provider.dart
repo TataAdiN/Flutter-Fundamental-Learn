@@ -1,12 +1,9 @@
-import 'dart:math';
-
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_fundamental/data/models/restaurant.dart';
-
-import '../helpers/notification_helper.dart';
 import '../helpers/preferences_helper.dart';
-import '../main.dart';
+import '../helpers/timezone_helper.dart';
 import '../themes/styles.dart';
+import '../utils/background_service.dart';
 
 class PreferencesProvider extends ChangeNotifier {
 
@@ -43,18 +40,27 @@ class PreferencesProvider extends ChangeNotifier {
 
   void enableDailyNotification(bool value, BuildContext context) {
     preferencesHelper.setDailyNotification(value);
-    Random random = Random();
-    int randomNumber = random.nextInt(2);
-    print(randomNumber);
-    notification();
     _getDailyNotificationPreferences();
+    setSchedule(value);
   }
 
-  Future<void> notification() async {
-    final NotificationHelper notificationHelper = NotificationHelper();
-    notificationHelper.configureSelectNotificationSubject(
-        context);
-    await notificationHelper
-        .showNotification(flutterLocalNotificationsPlugin, Restaurant(id: 'asd', name: 'Melting Pot', description: 'description', pictureId: 'pictureId', city: 'city', rating: 'rating'));
+  Future<bool> setSchedule(bool value) async {
+    if (value) {
+      print('Scheduling News Activated');
+      notifyListeners();
+      bool value = await AndroidAlarmManager.periodic(
+        const Duration(hours: 24),
+        1,
+        BackgroundService.callback,
+        startAt: DateTimeHelper.format(),
+        exact: true,
+        wakeup: true,
+      );
+      return value;
+    } else {
+      print('Scheduling News Canceled');
+      notifyListeners();
+      return await AndroidAlarmManager.cancel(1);
+    }
   }
 }
