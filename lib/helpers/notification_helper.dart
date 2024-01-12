@@ -72,7 +72,7 @@ class NotificationHelper {
         payload: jsonEncode(restaurant.toJson()));
   }
 
-  void configureSelectNotificationSubject(BuildContext context) {
+  void configureSelectNotificationSubject() {
     selectNotificationSubject.stream.listen(
           (String payload) async {
         var data = Restaurant.fromJson(jsonDecode(payload));
