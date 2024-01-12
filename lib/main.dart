@@ -17,7 +17,7 @@ import 'screens/restaurant/restaurant_page.dart';
 import 'screens/restaurant/restaurant_review/restaurant_review_page.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-FlutterLocalNotificationsPlugin();
+    FlutterLocalNotificationsPlugin();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,6 +53,7 @@ class MyApp extends StatelessWidget {
             preferencesHelper: PreferencesHelper(
               sharedPreferences: SharedPreferences.getInstance(),
             ),
+            context: context,
           ),
         )
       ],

@@ -17,8 +17,9 @@ class PreferencesProvider extends ChangeNotifier {
   bool get isDailyNotificationActive => _isDailyNotificationActive;
 
   PreferencesHelper preferencesHelper;
+  BuildContext context;
 
-  PreferencesProvider({required this.preferencesHelper}) {
+  PreferencesProvider({required this.preferencesHelper, required this.context}) {
     _getTheme();
     _getDailyNotificationPreferences();
   }
@@ -42,18 +43,18 @@ class PreferencesProvider extends ChangeNotifier {
 
   void enableDailyNotification(bool value, BuildContext context) {
     preferencesHelper.setDailyNotification(value);
-    notification(context);
     Random random = Random();
     int randomNumber = random.nextInt(2);
     print(randomNumber);
+    notification();
     _getDailyNotificationPreferences();
   }
 
-  Future<void> notification(BuildContext context) async {
-    final NotificationHelper _notificationHelper = NotificationHelper();
-    _notificationHelper.configureSelectNotificationSubject(
+  Future<void> notification() async {
+    final NotificationHelper notificationHelper = NotificationHelper();
+    notificationHelper.configureSelectNotificationSubject(
         context);
-    await _notificationHelper
+    await notificationHelper
         .showNotification(flutterLocalNotificationsPlugin, Restaurant(id: 'asd', name: 'Melting Pot', description: 'description', pictureId: 'pictureId', city: 'city', rating: 'rating'));
   }
 }

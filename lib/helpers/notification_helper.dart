@@ -8,6 +8,8 @@ import 'package:flutter_fundamental/data/models/restaurant.dart';
 
 final selectNotificationSubject = BehaviorSubject<String>();
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 class NotificationHelper {
   static NotificationHelper? _instance;
 
@@ -74,7 +76,7 @@ class NotificationHelper {
     selectNotificationSubject.stream.listen(
           (String payload) async {
         var data = Restaurant.fromJson(jsonDecode(payload));
-        Navigator.of(context).pushNamed('/restaurant', arguments: data);
+        navigatorKey.currentState?.pushNamed('/restaurant', arguments: data.id);
       },
     );
   }
