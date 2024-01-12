@@ -60,6 +60,7 @@ class MyApp extends StatelessWidget {
       child: Consumer<PreferencesProvider>(
         builder: (context, provider, child) {
           return MaterialApp(
+            navigatorKey: navigatorKey,
             title: 'Indonesian Restaurant',
             theme: provider.themeData,
             initialRoute: '/',
