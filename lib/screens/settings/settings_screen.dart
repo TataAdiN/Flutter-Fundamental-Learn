@@ -25,17 +25,21 @@ class SettingsScreen extends StatelessWidget {
                   activeColor: Colors.orange,
                   value: provider.isDarkTheme,
                   onChanged: (value) =>
-                      Provider.of<PreferencesProvider>(context, listen: false)
-                          .enableDarkTheme(!provider.isDarkTheme),
+                      provider.enableDarkTheme(!provider.isDarkTheme),
                 );
               },
             ),
           ),
           ListTile(
             title: const Text('Scheduling Notifications'),
-            trailing: Switch.adaptive(
-              value: false,
-              onChanged: (value) {},
+            trailing: Consumer<PreferencesProvider>(
+              builder: (context, provider, _) {
+                return Switch.adaptive(
+                  value: provider.isDailyNotificationActive,
+                  onChanged: (value) => provider.enableDailyNotification(
+                      !provider.isDailyNotificationActive, context),
+                );
+              },
             ),
           ),
         ],

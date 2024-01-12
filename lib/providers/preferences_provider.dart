@@ -1,6 +1,11 @@
-import 'package:flutter/material.dart';
+import 'dart:math';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_fundamental/data/models/restaurant.dart';
+
+import '../helpers/notification_helper.dart';
 import '../helpers/preferences_helper.dart';
+import '../main.dart';
 import '../themes/styles.dart';
 
 class PreferencesProvider extends ChangeNotifier {
@@ -8,8 +13,8 @@ class PreferencesProvider extends ChangeNotifier {
   bool _isDarkTheme = false;
   bool get isDarkTheme => _isDarkTheme;
 
-  bool _isDailyNewsActive = false;
-  bool get isDailyNewsActive => _isDailyNewsActive;
+  bool _isDailyNotificationActive = false;
+  bool get isDailyNotificationActive => _isDailyNotificationActive;
 
   PreferencesHelper preferencesHelper;
 
@@ -26,7 +31,7 @@ class PreferencesProvider extends ChangeNotifier {
   }
 
   void _getDailyNotificationPreferences() async {
-    _isDailyNewsActive = await preferencesHelper.isDailyNotificationActive;
+    _isDailyNotificationActive = await preferencesHelper.isDailyNotificationActive;
     notifyListeners();
   }
 
@@ -35,8 +40,20 @@ class PreferencesProvider extends ChangeNotifier {
     _getTheme();
   }
 
-  void enableDailyNotification(bool value) {
+  void enableDailyNotification(bool value, BuildContext context) {
     preferencesHelper.setDailyNotification(value);
+    notification(context);
+    Random random = Random();
+    int randomNumber = random.nextInt(2);
+    print(randomNumber);
     _getDailyNotificationPreferences();
+  }
+
+  Future<void> notification(BuildContext context) async {
+    final NotificationHelper _notificationHelper = NotificationHelper();
+    _notificationHelper.configureSelectNotificationSubject(
+        context);
+    await _notificationHelper
+        .showNotification(flutterLocalNotificationsPlugin, Restaurant(id: 'asd', name: 'Melting Pot', description: 'description', pictureId: 'pictureId', city: 'city', rating: 'rating'));
   }
 }

@@ -36,7 +36,7 @@ class NotificationHelper {
       onDidReceiveNotificationResponse: (details) {
         final payload = details.payload;
         if (payload != null) {
-          print('notification payload: $payload');
+          //print('notification payload: $payload');
         }
         selectNotificationSubject.add(payload ?? 'empty payload');
       },
@@ -70,11 +70,11 @@ class NotificationHelper {
         payload: jsonEncode(restaurant.toJson()));
   }
 
-  void configureSelectNotificationSubject(String route) {
+  void configureSelectNotificationSubject(BuildContext context) {
     selectNotificationSubject.stream.listen(
           (String payload) async {
         var data = Restaurant.fromJson(jsonDecode(payload));
-        //Navigator.of(context).pushNamed('/restaurant', arguments: data);
+        Navigator.of(context).pushNamed('/restaurant', arguments: data);
       },
     );
   }
