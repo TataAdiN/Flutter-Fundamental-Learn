@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 import '../../../data/api_service.dart';
 import '../../../data/models/restaurant.dart';
@@ -20,7 +21,7 @@ class RestaurantReviewPage extends StatelessWidget {
       create: (_) => RestaurantReviewProvider(
         reviews: restaurant.customerReviews!,
         restaurantId: restaurant.id,
-        apiService: ApiService(),
+        apiService: ApiService(client: http.Client()),
       ),
       child: RestaurantReviewScreen(
         restaurantName: restaurant.name,

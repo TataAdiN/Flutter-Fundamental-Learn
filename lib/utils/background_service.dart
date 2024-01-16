@@ -2,6 +2,8 @@ import 'dart:isolate';
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:http/http.dart' as http;
+
 import '../data/api_service.dart';
 import '../data/models/all_restaurant_result.dart';
 import '../data/models/restaurant.dart';
@@ -29,10 +31,9 @@ class BackgroundService {
   }
 
   static Future<void> callback() async {
-    print('Alarm fired!');
     final NotificationHelper notificationHelper = NotificationHelper();
     Random random = Random();
-    AllRestaurantResult result = await ApiService().fetchAll();
+    AllRestaurantResult result = await ApiService(client: http.Client()).fetchAll();
     List<Restaurant> restaurants = result.restaurants;
 
     Restaurant restaurant = Restaurant(id: 'asd', name: 'Test Retaurant Notification', description: 'description', pictureId: 'pictureId', city: 'city', rating: 'rating');
