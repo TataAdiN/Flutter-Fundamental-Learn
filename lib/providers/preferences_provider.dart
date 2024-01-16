@@ -47,7 +47,6 @@ class PreferencesProvider extends ChangeNotifier {
 
   Future<bool> setSchedule(bool value) async {
     if (value) {
-      print('Scheduling News Activated');
       notifyListeners();
       bool value = await AndroidAlarmManager.periodic(
         const Duration(hours: 24),
@@ -59,7 +58,6 @@ class PreferencesProvider extends ChangeNotifier {
       );
       return value;
     } else {
-      print('Scheduling News Canceled');
       notifyListeners();
       return await AndroidAlarmManager.cancel(1);
     }
